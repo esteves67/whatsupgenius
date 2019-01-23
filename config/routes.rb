@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'home#index'
+
+  get '/auth/spotify/callback', to: 'home#callback'
+
+  namespace :twilio do
+    post 'messages', to: 'messages#create'
+  end
 end

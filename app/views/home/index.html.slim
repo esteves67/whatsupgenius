@@ -1,0 +1,29 @@
+.content
+
+  - if @playlist_id
+    h1 Add songs to this playlist from WhatsApp
+    p
+      | Join the sandbox by sending a WhatsApp message saying "join 
+      = ENV['WHATSAPP_SANDBOX_PHRASE']
+      | " to <a href="https://wa.me/
+      = ENV['WHATSAPP_NUMBER']
+      | ?text=
+      = URI.encode("join #{ENV['WHATSAPP_SANDBOX_PHRASE']}")
+      | ">+
+      = ENV['WHATSAPP_NUMBER']
+    p
+      | Once connected, send your favourite song to add it to the playlist!
+    |  <iframe src="https://open.spotify.com/embed/user/
+    = @user_id
+    | /playlist/
+    = @playlist_id
+    | " width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media">
+
+  - else
+    h1
+      | First, connect your Spotify account
+    p
+      = link_to 'Sign in with Spotify', '/auth/spotify'
+
+script
+  |  window.addEventListener('load', function() { var iframe = document.querySelector('iframe'); if (iframe) { setInterval(function() { iframe.src = iframe.src; }, 60000); } }) 

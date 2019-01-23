@@ -21,13 +21,13 @@
 /config/master.key
 
 # RAILS
-
+/config/application.yml
 .rspec
+
 # That would be a pity
 /config/database.yml
 
 # OSX
-
 .DS_Store
 .AppleDouble
 .LSOverride
