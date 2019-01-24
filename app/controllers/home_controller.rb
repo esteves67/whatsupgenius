@@ -7,8 +7,22 @@ class HomeController < ApplicationController
   end
 
   def callback
-    @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    @new_playlist = @spotify_user.create_playlist!('WhatsUpGenius')
-    render :callback
+    spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+
+    @user = User.new(spotify_user_id: spotify_user.id,
+                     email: spotify_user.email,
+                     expires: spotify_user.credentials['expires'],
+                     expires_at: spotify_user.credentials['expires_at'],
+                     token: spotify_user.credentials['token'],
+                     refresh_token: spotify_user.credentials['refresh_token'])
+
+    if @user.valid?
+      new_playlist = spotify_user.create_playlist!('WhatsUpGenius')
+      @user.playlist_id = new_playlist.id
+      @user.save!
+      render :callback
+    else
+      render :index
+    end
   end
 end
