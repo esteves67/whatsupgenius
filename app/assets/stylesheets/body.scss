@@ -1,11 +1,13 @@
 html, body {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   background: {
     image: asset_url('wallpaper.jpg');
     size: cover;
+    repeat: no-repeat;
   }
 
   color: $gray-100;

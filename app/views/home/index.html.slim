@@ -1,5 +1,5 @@
 .row.align-items-center.justify-content-around.home-content
-  .col-md-6.col-lg-4
+  .col-xs-12.col-md-6.col-lg-4
     .card.bg-dark.shadow-lg.text-center
       .card-header
         = t('.get_genius_title')
@@ -9,6 +9,6 @@
       .card-footer
         = link_to t('.ready'), auth_spotify_callback_path, class: 'btn btn-primary  '
 
-  .col-md-6.col-lg-6.offset-lg-1
+  .col-xs-12.col-md-6.col-lg-6.offset-lg-1
     = render 'carousel'
 
