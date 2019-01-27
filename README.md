@@ -70,7 +70,7 @@ Start the app with:
 rails s
 ```
 
-Then, you have to start Ngrok
+Then, you have to start Ngrok in another terminal tab:
 ```bash
 path/to/ngrock http 3000
 ```
