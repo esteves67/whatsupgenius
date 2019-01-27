@@ -17,7 +17,7 @@ class HomeController < ApplicationController
                      refresh_token: spotify_user.credentials['refresh_token'])
 
     if @user.valid?
-      new_playlist = spotify_user.create_playlist!('WhatsUpGenius')
+      new_playlist = spotify_user.create_playlist!("What's up Genius?")
       @user.playlist_id = new_playlist.id
       @user.save!
       render :callback
