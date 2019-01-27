@@ -1,3 +1,10 @@
 .how-it-works--card {
   height: 240px;
+
+  @include media-breakpoint-down(md) {
+    & {
+      height: 300px;
+      margin-top: 50px;
+    }
+  }
 }

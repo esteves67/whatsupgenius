@@ -1,14 +1,14 @@
-.row.h-100.align-items-center.justify-content-around
-  .col-md-4
+.row.align-items-center.justify-content-around.home-content
+  .col-md-6.col-lg-4
     .card.bg-dark.text-center
       .card-header
-        = t('views.home.get_genius_title')
+        = t('.get_genius_title')
       .card-body
         .card-text
-          = raw t('views.home.get_genius_description')
+          = raw t('.get_genius_description')
       .card-footer
-        = link_to t('views.home.ready'), auth_spotify_callback_path, class: 'btn btn-success  '
+        = link_to t('.ready'), auth_spotify_callback_path, class: 'btn btn-success  '
 
-  .col-md-6.offset-md-1
+  .col-md-6.col-lg-6.offset-lg-1
     = render 'carousel'
 

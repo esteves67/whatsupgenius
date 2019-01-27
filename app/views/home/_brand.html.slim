@@ -1,12 +1,14 @@
-.brand
-  p= t('views.home.brand') 
-  .scroller
-    p What's up Genius?
-    p
-      | Spotify 
-      i.fab.fa-spotify
-    p
-      | Genius.com
-    p
-      | WhatsApp 
-      i.fab.fa-whatsapp
+.row.brand
+  .col-md-12.col-lg-4.iamCol
+    p= t('.brand')
+  .col-md-12.col-lg-8.slideCol
+    .scroller
+      .inner
+        p What's up Genius?
+        p
+          | Spotify 
+          i.fab.fa-spotify
+        p Genius.com
+        p
+          | WhatsApp 
+          i.fab.fa-whatsapp

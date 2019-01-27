@@ -9,8 +9,7 @@ $(document).ready(function(){
   $('#card').on('slide.bs.carousel', function () {
     $holder = $( ".carousel-indicators li.active" );
     $holder.next( "li" ).addClass("active");
-    if($holder.is(':last-child'))
-    {
+    if($holder.is(':last-child')) {
         $holder.removeClass("active");
         $(".carousel-indicators li:first").addClass("active");
     }

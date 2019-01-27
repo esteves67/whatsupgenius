@@ -1,17 +1,24 @@
 .brand {
-  position: absolute;
-  top: 40px;
-  left: 100px;
-  font-size: $h1-font-size;
+	position: absolute;
+  top: 50px;
+  left: -50px;
+  width: 100% !important;
   text-transform: uppercase;
-  height: 50px;
-  width: 50%;
-  overflow: hidden;
 
-  .scroller {
-    position: absolute;
-    left: 340px;
-    animation: 10s normal infinite running scroll;
+  .iamCol {
+    text-align: right;
+    float: left;
+    font-weight: 300;
+    font-size: 2rem;
+  }
+
+  .slideCol {
+    text-align: left;
+    overflow: hidden;
+    font-weight: 900;
+    font-size: 3.6rem;
+    display: block;
+    white-space: nowrap;
 
     & p:nth-child(2) {
       color: $spotify;
@@ -23,20 +30,45 @@
       color: $whatsapp;
     }
   }
+
+  .scroller {
+    height: 4rem;
+    line-height: 4rem;
+    overflow: hidden;
+
+    .inner {
+      animation: 10s normal infinite running innerScroll;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    & {
+      position: initial;
+      margin: 50px auto;
+    }
+    & .iamCol {
+      text-align: center;
+    }
+    & .slideCol {
+      top: -20px;
+      font-size: 3rem;
+      text-align: center;
+    }
+  }
 }
 
-@keyframes scroll {
-   0%  	{margin-top: -76px;}
-   15% 	{margin-top: -76px;}
+@keyframes innerScroll {
+   0%  	{margin-top: 0px;}
+   15% 	{margin-top: 0px;}
 
-   25%  {margin-top: -152px;}
-   40%  {margin-top: -152px;}
+   25%  {margin-top: -5rem;}
+   40%  {margin-top: -5rem;}
    
-   50%  {margin-top: -228px;}
-   65%  {margin-top: -228px;}
+   50%  {margin-top: -10rem;}
+   65%  {margin-top: -10rem;}
 
-   75%  {margin-top: -304px;}
-   90%  {margin-top: -304px;}
+   75%  {margin-top: -15rem;}
+   90%  {margin-top: -15rem;}
 
-   100% {margin-top: -76px;}
+   100% {margin-top: 0px;}
 }
