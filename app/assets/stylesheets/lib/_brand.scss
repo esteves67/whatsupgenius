@@ -4,6 +4,7 @@
   left: -50px;
   width: 100% !important;
   text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.175);
 
   .iamCol {
     text-align: right;
@@ -20,6 +21,9 @@
     display: block;
     white-space: nowrap;
 
+    & p:first-child {
+      color: $whatsupgenius;
+    }
     & p:nth-child(2) {
       color: $spotify;
     }

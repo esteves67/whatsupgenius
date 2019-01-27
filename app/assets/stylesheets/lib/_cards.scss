@@ -1,3 +1,16 @@
+.card {
+  .card-header {
+    font-weight: bold;
+    font-size: $h5-font-size;
+  }
+
+  .card-body {
+    .card-title {
+      font-size: $h6-font-size;
+    }
+  }
+}
+
 .how-it-works--card {
   height: 240px;
 
