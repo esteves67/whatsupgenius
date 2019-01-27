@@ -1,0 +1,33 @@
+.card.bg-dark.text-center.how-it-works--card
+  .card-header
+    = t('views.home.carousel_title')
+  .card-body
+    .carousel.slide#card data-ride="carousel"
+      .carousel-inner
+
+        .carousel-item.active
+          h5.card-title= t('views.home.first_step.title')
+          p.card-text.text-justify= t('views.home.first_step.description')
+
+        .carousel-item
+          h5.card-title= t('views.home.second_step.title')
+          p.card-text.text-justify= t('views.home.second_step.description')
+        
+        .carousel-item
+          h5.card-title= t('views.home.third_step.title')
+          p.card-text.text-justify= raw t('views.home.third_step.description')
+
+        .carousel-item
+          h5.card-title= t('views.home.fourth_step.title')
+          p.card-text.text-justify= raw t('views.home.fourth_step.description')
+
+        .carousel-item
+          h5.card-title= t('views.home.last_thing.title')
+          p.card-text.text-justify= raw t('views.home.last_thing.description')
+
+    ul.carousel-indicators
+      li.active data-slide-to="0" data-target="#card" 
+      li data-slide-to="1" data-target="#card" 
+      li data-slide-to="2" data-target="#card"
+      li data-slide-to="3" data-target="#card"
+      li data-slide-to="4" data-target="#card"

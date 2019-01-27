@@ -22,6 +22,7 @@
 
 # RAILS
 /config/application.yml
+/config/database.yml
 .rspec
 
 # That would be a pity

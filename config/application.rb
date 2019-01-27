@@ -14,5 +14,6 @@ module Whatsupgenius
     config.load_defaults 5.2
 
     config.middleware.use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], %r{/twilio/messages}
+    config.sass.preferred_syntax = :sass
   end
 end

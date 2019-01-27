@@ -1,0 +1,12 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background: {
+    image: asset_url('wallpaper.jpg');
+    size: cover;
+  }
+
+  color: $gray-100;
+}

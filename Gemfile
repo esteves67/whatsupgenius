@@ -5,15 +5,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'capistrano-rails', group: :development
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'capistrano-rails', group: :development
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 
+gem 'bootstrap', '~> 4.2', '>= 4.2.1'
 gem 'coffee-rails', '~> 4.2'
+gem 'font-awesome-sass', '~> 5.6', '>= 5.6.1'
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails', '~> 3.2'
 gem 'turbolinks', '~> 5'
@@ -21,12 +24,9 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'rspotify', '~> 2.4', '>= 2.4.1'
 gem 'twilio-ruby', '~> 5.19'
-# I have to use this OAuth2 version to prevent an issue caused by
-# the redefinition of callback_url in the 1.4.0 version.
-# Restoring the callback_url method with a OAuth2 subclass
-# should be a solution.
-# See https://github.com/omniauth/omniauth-oauth2/issues/81 for more details.
-gem 'omniauth-oauth2', '~> 1.3', '>= 1.3.1'
+# I'm using a fork of omniauth-oauth2 to fix the redirection
+# problem with RSpotify.
+gem 'omniauth-oauth2', git: 'https://github.com/escanxr/omniauth-oauth2'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
