@@ -27,7 +27,7 @@ Create a new application, then fill the form.
 You are now asked if this a commercial integration, choose "*No*".
 Now, copy the *Client ID* and *Client Secret*, then add them to `config/application.yml`.
 
-**Last thing: **Click on "*Edit settings*", enter the redirect URL `http://localhost:3000/auth/spotify/callback` and click *Add*.
+**Last thing:** Click on "*Edit settings*", enter the redirect URL `http://localhost:3000/auth/spotify/callback` and click *Add*.
 
 ### Twilio
 Twilio allows us to send a message to a Whatsapp number that we control with Twilio. Then, twilio will send an HTTP request, or webhook, toour application. 
