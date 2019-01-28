@@ -30,18 +30,13 @@ Now, copy the *Client ID* and *Client Secret*, then add them to `config/applicat
 **Last thing:** Click on "*Edit settings*", enter the redirect URL `http://localhost:3000/auth/spotify/callback` and click *Add*.
 
 ### Twilio
-Twilio allows us to send a message to a Whatsapp number that we control with Twilio. Then, twilio will send an HTTP request, or webhook, toour application. 
+Twilio allows us to send a message to a Whatsapp number that we control. Then, Twilio will send an HTTP request, or webhook, to our application. 
 We will use this to respond to incoming messages and add songs to the playlist.
 
 Create a [Twilio account](https://www.twilio.com/try-twilio).
 Than, add your *authentification token* to the `application.yml`.
 
 ## Setup
-
-Get the code:
-```bash
-git clone git@github.com:escanxr/whatsupgenius.git
-```
 
 Set up the dependencies:
 ```bash
