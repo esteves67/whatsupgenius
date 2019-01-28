@@ -75,7 +75,7 @@ Then, you have to start Ngrok in another terminal tab:
 path/to/ngrock http 3000
 ```
 
-### Lasst thing to do
+### Just a last thing to do
 
 Now that Ngrok is started, copy the forwarding link (*looks like http://xxxxx.ngrok.io*).
 Add the `/twilio/messages` path to it like `http://xxxxx.ngrock.io/twilio/messages`.
@@ -92,7 +92,7 @@ On the homepage, click the '*I am ready*' button, then login with your Spotify a
 Psst, open your Spotify application: a playlist called '*What's up genius?*' has been created!
 
 Now, you are able to manage this one with Whatsapp. Send to the Twilio contact your query.
-Your query is the artist and song names. The query is sent to Spotify and, if there's a result, 
-Twilio returns it in the conversation. This is that what you wanted? Ok, so you just have to respond to 
+The query is sent to Spotify and, if there's a result, Twilio returns it in the conversation.
+This is the song that you wanted? Ok, so you just have to respond to 
 the bot with something like `'yes', 'yeah', 'yep', 'yup' or '👍'`.
 If it's not what you wanted, type `'no', 'nah', 'nope' or '👎'`.
