@@ -1,0 +1,26 @@
+.home-content {
+  height: 100%;
+
+  @include media-breakpoint-down(md) {
+    height: initial;
+  }
+
+  .fucking-genius {
+    animation: pulsing 2s infinite;
+  }
+}
+
+@keyframes pulsing {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba($whatsupgenius, 0.8);
+    box-shadow: 0 0 0 0 rgba($whatsupgenius, 0.8);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 7px rgba($whatsupgenius, 0);
+      box-shadow: 0 0 0 7px rgba($whatsupgenius, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba($whatsupgenius, 0);
+      box-shadow: 0 0 0 0 rgba($whatsupgenius, 0);
+  }
+}
