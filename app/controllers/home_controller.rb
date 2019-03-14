@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :callback
+
   def index
-    @playlist_id = ENV.fetch('SPOTIFY_PLAYLIST_ID', nil)
-    @user_id = ENV.fetch('SPOTIFY_USER_ID', nil)
   end
 
   def callback
@@ -24,5 +24,13 @@ class HomeController < ApplicationController
     else
       render :index
     end
+  end
+
+  def whatsupgenius
+    playlist_name = params[:playlist_name]
+
+    render json: {
+      playlist: playlist_name
+    }
   end
 end

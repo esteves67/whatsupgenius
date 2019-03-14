@@ -6,17 +6,18 @@
         <div class="card-header text-center">
           <h4>Abracadabra...</h4>
         </div>
+
         <div class="card-body">
-          <label for="playlist_name">
+          <label for="playlist_name" class="mb-3">
             Choisis un nom pour ta playlist
             <span class="text-muted"><small>
-              (20 charactères maximum)
+              ({{maxLength}} charactères maximum)
             </small></span>
           </label>
           <div class="input-group">
             <input v-model="playlist_name" :maxLength="maxLength" id="playlist_name" placeholder="What's up Genius?" class="form-control">
             <div class="input-group-append">
-              <span class="input-group-text">{{maxLength - playlist_name.length}}</span>
+              <span class="input-group-text">{{maxLength - playlist_name.length}} caractères restants</span>
             </div>
           </div>
           <p class="text-center mt-4" v-if="playlist_name">
@@ -25,8 +26,9 @@
             sera créée sur ton compte. 🤘
           </p>
         </div>
+
         <div class="card-footer text-center">
-          <button type="submit" class="btn btn-lg btn-success">
+          <button type="submit" class="btn btn-lg btn-success" @click="submit" :disabled="!playlist_name.length">
             Connexion à Spotify <i class="fab fa-spotify"></i>
           </button>
         </div>
@@ -42,7 +44,7 @@ function defaultData() {
   return {
     open: false,
     playlist_name: '',
-    maxLength: 20
+    maxLength: 25
   }
 }
 
@@ -60,7 +62,12 @@ export default {
   },
 
   methods: {
-    submit: {
+    submit: function() {
+      this.$http.get('/auth/spotify').then(
+        function(response) {
+          console.log(response.body);
+        }
+      )
     }
   }
 }
@@ -82,14 +89,13 @@ export default {
     overflow: auto;
 
     .fg-container {
-      max-width: 600px;
-      max-height: 335px;
+      min-width: 600px;
+      min-height: 300px;
       margin: 0 auto;
       padding: 20px;
 
       .card {
         width: 600px;
-        height: 335px;
       }
     }
 
