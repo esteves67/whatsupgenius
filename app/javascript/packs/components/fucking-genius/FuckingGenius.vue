@@ -28,7 +28,7 @@
         </div>
 
         <div class="card-footer text-center">
-          <button type="submit" class="btn btn-lg btn-success" @click="submit" :disabled="!playlist_name.length">
+          <button class="btn btn-lg btn-success" @click="submit" :disabled="!playlist_name.length">
             Connexion à Spotify <i class="fab fa-spotify"></i>
           </button>
         </div>
@@ -63,11 +63,10 @@ export default {
 
   methods: {
     submit: function() {
-      this.$http.get('/auth/spotify').then(
-        function(response) {
-          console.log(response.body);
-        }
-      )
+      document.cookie  = 'playlist_name=' + this.playlist_name + ';';
+      var authorizeURL = window.location.href + 'auth/spotify';
+
+      window.location = authorizeURL;
     }
   }
 }
