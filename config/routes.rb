@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/spotify-login',         to: 'home#spotify_login'
   get '/auth/spotify/callback', to: 'home#callback'
   get '/check-user',            to: 'home#check_user'
+  get '/bot',                   to: 'home#genius_bot'
 
   namespace :twilio do
     post 'messages', to: 'messages#create'

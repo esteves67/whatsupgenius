@@ -23,9 +23,10 @@ class HomeController < ApplicationController
 
   def callback
     spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    user_token = params[:state]
+    user_token   = params[:state]
+    phone_number = cookies[:phoneNumber]
 
-    @user = User.perform(spotify_user, user_token)
+    @user = User.perform(spotify_user, user_token, phone_number)
 
     if @user.valid?
       playlist_name     = cookies[:playlistName]
@@ -54,5 +55,9 @@ class HomeController < ApplicationController
         status: 'unmatched'
       }
     end
+  end
+
+  def genius_bot
+    render json: { message: 'Bien joué garçon' }
   end
 end

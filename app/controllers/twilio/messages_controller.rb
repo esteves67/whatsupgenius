@@ -6,16 +6,17 @@ module Twilio
     skip_before_action :verify_authenticity_token
 
     def create
-      query = params['Body']
-      spotify = Spotify.new(User.last)
+      query = params[:body]
+      user = find_user(params[:from])
+      spotify = Spotify.new(user)
 
       if session[:track]
         answer = query.split(' ').first.downcase.strip
-        if ['yes', 'yeah', 'yep', 'yup', '👍'].include? answer
+        if %w[yes yeah yep yup 👍].include? answer
           message = 'OK, adding that track now.'
           spotify.add_to_playlist(User.last.playlist_id, session[:track])
           session[:track] = nil
-        elsif ['no', 'nah', 'nope', '👎'].include? answer
+        elsif %w[no nah nope 👎].include? answer
           session[:track] = nil
           message = 'What do you want to add?'
         end
@@ -35,5 +36,12 @@ module Twilio
       response.message(body: message)
       render xml: response.to_xml
     end
+  end
+
+private
+
+  def find_user(phone_number)
+    phone_number = phone_number.remove('whatsapp:')
+    User.find_by(phone_number: phone_number)
   end
 end

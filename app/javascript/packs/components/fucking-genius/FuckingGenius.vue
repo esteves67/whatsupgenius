@@ -29,6 +29,11 @@
                   <span class="input-group-text">{{maxLength - playlist_name.length}} caractères restants</span>
                 </div>
               </div>
+
+              <label for="phone_number" class="mb-3">
+                Numéro de téléphone
+              </label>
+
               <p class="text-center mt-4" v-if="playlist_name">
                 Après connexion à Spotify, la playlist 
                 <span class="font-italic">"{{playlist_name}}"</span>
@@ -105,7 +110,6 @@ export default {
     checkUserRequest: function(userToken) {
       this.$http.get('/check-user', { params: { user_token: userToken } }).then(response => {
         if(response.body.status === 'matched') {
-          console.log(response.body);
           this.userCreated = true;
         }
       });
@@ -115,10 +119,16 @@ export default {
       if (!this.userCreated) {
         this.checkUserRequest(userToken);
       } else {
+        clearInterval(window.interval);
+        this.geniusBot();
+      }
+    },
+
+    geniusBot: function() {
+      this.$http.get('/bot').then(response => {
         this.loader = false;
         this.step   = 'userCreated';
-        clearInterval(window.interval);
-      }
+      });
     }
   }
 }

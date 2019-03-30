@@ -12,7 +12,6 @@ Vue.http.interceptors.push(function (request, next) {
   next();
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#fucking-genius',

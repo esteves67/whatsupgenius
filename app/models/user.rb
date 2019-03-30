@@ -10,7 +10,7 @@ class User < ApplicationRecord
     :user_token,
     presence: true)
 
-  def self.perform(spotify_user, user_token)
+  def self.perform(spotify_user, user_token, phone_number)
     User.new(
       spotify_user_id: spotify_user.id,
       email:           spotify_user.email,
@@ -18,7 +18,8 @@ class User < ApplicationRecord
       expires_at:      spotify_user.credentials['expires_at'],
       token:           spotify_user.credentials['token'],
       refresh_token:   spotify_user.credentials['refresh_token'],
-      user_token:      user_token
+      user_token:      user_token,
+      phone_number:    phone_number
     )
   end
 end
