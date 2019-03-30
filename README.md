@@ -27,21 +27,16 @@ Create a new application, then fill the form.
 You are now asked if this a commercial integration, choose "*No*".
 Now, copy the *Client ID* and *Client Secret*, then add them to `config/application.yml`.
 
-**Last thing: **Click on "*Edit settings*", enter the redirect URL `http://localhost:3000/auth/spotify/callback` and click *Add*.
+**Last thing:** Click on "*Edit settings*", enter the redirect URL `http://localhost:3000/auth/spotify/callback` and click *Add*.
 
 ### Twilio
-Twilio allows us to send a message to a Whatsapp number that we control with Twilio. Then, twilio will send an HTTP request, or webhook, toour application. 
+Twilio allows us to send a message to a Whatsapp number that we control. Then, Twilio will send an HTTP request, or webhook, to our application. 
 We will use this to respond to incoming messages and add songs to the playlist.
 
 Create a [Twilio account](https://www.twilio.com/try-twilio).
 Than, add your *authentification token* to the `application.yml`.
 
 ## Setup
-
-Get the code:
-```bash
-git clone git@github.com:escanxr/whatsupgenius.git
-```
 
 Set up the dependencies:
 ```bash
@@ -70,12 +65,12 @@ Start the app with:
 rails s
 ```
 
-Then, you have to start Ngrok
+Then, you have to start Ngrok in another terminal tab:
 ```bash
 path/to/ngrock http 3000
 ```
 
-### Lasst thing to do
+### Just a last thing to do
 
 Now that Ngrok is started, copy the forwarding link (*looks like http://xxxxx.ngrok.io*).
 Add the `/twilio/messages` path to it like `http://xxxxx.ngrock.io/twilio/messages`.
@@ -92,7 +87,7 @@ On the homepage, click the '*I am ready*' button, then login with your Spotify a
 Psst, open your Spotify application: a playlist called '*What's up genius?*' has been created!
 
 Now, you are able to manage this one with Whatsapp. Send to the Twilio contact your query.
-Your query is the artist and song names. The query is sent to Spotify and, if there's a result, 
-Twilio returns it in the conversation. This is that what you wanted? Ok, so you just have to respond to 
+The query is sent to Spotify and, if there's a result, Twilio returns it in the conversation.
+This is the song that you wanted? Ok, so you just have to respond to 
 the bot with something like `'yes', 'yeah', 'yep', 'yup' or '👍'`.
 If it's not what you wanted, type `'no', 'nah', 'nope' or '👎'`.
