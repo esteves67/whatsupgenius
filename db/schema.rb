@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_01_24_230723) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +23,9 @@ ActiveRecord::Schema.define(version: 2019_01_24_230723) do
     t.text "refresh_token"
     t.text "token"
     t.text "playlist_id"
+    t.string "user_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

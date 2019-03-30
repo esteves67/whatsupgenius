@@ -10,7 +10,8 @@ begin
       :spotify,
       ENV['SPOTIFY_CLIENT_ID'],
       ENV['SPOTIFY_CLIENT_SECRET'],
-      scope: 'playlist-modify-public user-read-email'
+      scope:                  'playlist-modify-public user-read-email',
+      provider_ignores_state: true
     )
   end
 end

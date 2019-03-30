@@ -7,30 +7,45 @@
           <h4>Abracadabra...</h4>
         </div>
 
-        <div class="card-body">
-          <label for="playlist_name" class="mb-3">
-            Choisis un nom pour ta playlist
-            <span class="text-muted"><small>
-              ({{maxLength}} charactères maximum)
-            </small></span>
-          </label>
-          <div class="input-group">
-            <input v-model="playlist_name" :maxLength="maxLength" id="playlist_name" placeholder="What's up Genius?" class="form-control">
-            <div class="input-group-append">
-              <span class="input-group-text">{{maxLength - playlist_name.length}} caractères restants</span>
-            </div>
-          </div>
-          <p class="text-center mt-4" v-if="playlist_name">
-            Après connexion à Spotify, la playlist 
-            <span class="font-italic">"{{playlist_name}}"</span>
-            sera créée sur ton compte. 🤘
-          </p>
+        <div class="fg-loader" v-if="loader">
+          <p>Identification à Spotify... 🧞‍♂️</p>
+          <svg class="loader" width="50" height="50" viewBox="25 25 50 50" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="20" fill="none" stroke-width="2"></circle>
+          </svg>
         </div>
 
-        <div class="card-footer text-center">
-          <button class="btn btn-lg btn-success" @click="submit" :disabled="!playlist_name.length">
-            Connexion à Spotify <i class="fab fa-spotify"></i>
-          </button>
+        <div v-else>
+          <div v-if="this.step == 'login'">
+            <div class="card-body">
+              <label for="playlist_name" class="mb-3">
+                Choisis un nom pour ta playlist
+                <span class="text-muted"><small>
+                  ({{maxLength}} charactères maximum)
+                </small></span>
+              </label>
+              <div class="input-group">
+                <input v-model="playlist_name" :maxLength="maxLength" id="playlist_name" placeholder="What's up Genius?" class="form-control">
+                <div class="input-group-append">
+                  <span class="input-group-text">{{maxLength - playlist_name.length}} caractères restants</span>
+                </div>
+              </div>
+              <p class="text-center mt-4" v-if="playlist_name">
+                Après connexion à Spotify, la playlist 
+                <span class="font-italic">"{{playlist_name}}"</span>
+                sera créée sur ton compte. 🤘
+              </p>
+            </div>
+
+            <div class="card-footer text-center">
+              <button class="btn btn-lg btn-success" @click="spotifyLogin" :disabled="!playlist_name.length">
+                Connexion à Spotify <i class="fab fa-spotify"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div v-else>
+            <p class="font-weight-bold text-center my-3">Félicitations !</p>
+          </div>
         </div>
       </div>
     </div>
@@ -42,14 +57,18 @@
 
 function defaultData() {
   return {
-    open: false,
+    open:          false,
+    maxLength:     25,
     playlist_name: '',
-    maxLength: 25
+    loader:        false,
+    userCreated:   false,
+    step:          'login'
   }
 }
 
 export default {
   data: defaultData,
+
   mounted: function() {
     var self = this;
 
@@ -62,11 +81,44 @@ export default {
   },
 
   methods: {
-    submit: function() {
-      document.cookie  = 'playlist_name=' + this.playlist_name + ';';
-      var authorizeURL = window.location.href + 'auth/spotify';
+    spotifyLogin: function() {
+      document.cookie = 'playlistName=' + this.playlist_name;
+      const userToken = this.generateToken();
+      this.loader     = true;
+      const self      = this;
 
-      window.location = authorizeURL;
+      this.$http.get('/spotify-login', { params: { user_token: userToken } }).then(response => {
+        window.open(response.body.uri);
+      }, error => {
+        console.log(error.body);
+      });
+
+      window.interval = setInterval(function() {
+        self.userNotCreated(userToken)
+      }, 1500);
+    },
+
+    generateToken: function() {
+      return Math.random().toString(36).substr(2);
+    },
+
+    checkUserRequest: function(userToken) {
+      this.$http.get('/check-user', { params: { user_token: userToken } }).then(response => {
+        if(response.body.status === 'matched') {
+          console.log(response.body);
+          this.userCreated = true;
+        }
+      });
+    },
+
+    userNotCreated: function(userToken) {
+      if (!this.userCreated) {
+        this.checkUserRequest(userToken);
+      } else {
+        this.loader = false;
+        this.step   = 'userCreated';
+        clearInterval(window.interval);
+      }
     }
   }
 }
@@ -74,6 +126,8 @@ export default {
 </script>
 
 <style lang="scss">
+
+  $whatsupgenius: #f76d23;
 
   .fg {
     position: fixed;
@@ -95,6 +149,53 @@ export default {
 
       .card {
         width: 600px;
+        
+        .fg-loader {
+          display:flex;
+          align-items: center;
+          flex-direction: column;
+          justify-content: center;
+          z-index: 10;
+          height: 192px;
+
+          .loader{
+            animation: loading-rotation 1400ms linear infinite;
+            margin: 9px 0;
+
+            circle {
+              stroke: $whatsupgenius;
+              stroke-dasharray: 120;
+              stroke-dashoffset: 0;
+              transform-origin: center;
+              animation: loading-dash 1400ms ease-in-out infinite;
+            }
+          }
+
+          &.white {
+            circle {
+              stroke: #FFFFFF;
+            }
+          }
+        }
+
+        @keyframes loading-rotation {
+          100% { transform: rotate(360deg); }
+        }
+
+        @keyframes loading-dash {
+          0% {
+            stroke-dasharray: 1,200;
+            stroke-dashoffset: 0;
+          }
+          50% {
+            stroke-dasharray: 89,200;
+            stroke-dashoffset: -35;
+          }
+          100% {
+            stroke-dasharray: 89,200;
+            stroke-dashoffset: -124;
+          }
+        }
       }
     }
 
