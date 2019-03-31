@@ -17,32 +17,38 @@
         <div v-else>
           <div v-if="this.step == 'login'">
             <div class="card-body">
-              <label for="playlist_name" class="mb-3">
+              <label for="playlistName" class="mb-3">
                 Choisis un nom pour ta playlist
                 <span class="text-muted"><small>
                   ({{maxLength}} charactères maximum)
                 </small></span>
               </label>
               <div class="input-group">
-                <input v-model="playlist_name" :maxLength="maxLength" id="playlist_name" placeholder="What's up Genius?" class="form-control">
+                <input v-model="playlistName" :maxLength="maxLength" id="playlistName" placeholder="What's up Genius?" class="form-control">
                 <div class="input-group-append">
-                  <span class="input-group-text">{{maxLength - playlist_name.length}} caractères restants</span>
+                  <span class="input-group-text">{{maxLength - playlistName.length}} caractères restants</span>
                 </div>
               </div>
 
               <label for="phone_number" class="mb-3">
                 Numéro de téléphone
               </label>
+              <div class="input-group">
+                <input v-model="phoneNumber" id="phoneNumber" placeholder="+33 (0) 123456789" class="form-control">
+                <div class="input-group-append">
+                  <span class="input-group-text">{{phoneNumberFormatting}}</span>
+                </div>
+              </div>
 
-              <p class="text-center mt-4" v-if="playlist_name">
+              <p class="text-center mt-4" v-if="playlistName">
                 Après connexion à Spotify, la playlist 
-                <span class="font-italic">"{{playlist_name}}"</span>
+                <span class="font-italic">"{{playlistName}}"</span>
                 sera créée sur ton compte. 🤘
               </p>
             </div>
 
             <div class="card-footer text-center">
-              <button class="btn btn-lg btn-success" @click="spotifyLogin" :disabled="!playlist_name.length">
+              <button class="btn btn-lg btn-success" @click="spotifyLogin" :disabled="!playlistName.length">
                 Connexion à Spotify <i class="fab fa-spotify"></i>
               </button>
             </div>
@@ -59,17 +65,21 @@
 </template>
 
 <script>
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 function defaultData() {
   return {
-    open:          false,
-    maxLength:     25,
-    playlist_name: '',
-    loader:        false,
-    userCreated:   false,
-    step:          'login'
+    open:            false,
+    maxLength:       25,
+    playlistName:   '',
+    loader:          false,
+    userCreated:     false,
+    step:            'login',
+    phoneNumber:     '',
+    formattedNumber: ''
   }
 }
+
 
 export default {
   data: defaultData,
@@ -85,9 +95,18 @@ export default {
     }
   },
 
+  computed: {
+    phoneNumberFormatting: function() {
+      var rawPhoneNumber = parsePhoneNumberFromString(this.phoneNumber);
+      if (rawPhoneNumber) {
+        return rawPhoneNumber.number;
+      }
+    }
+  },
+
   methods: {
     spotifyLogin: function() {
-      document.cookie = 'playlistName=' + this.playlist_name;
+      document.cookie = 'playlistName=' + this.playlistName;
       const userToken = this.generateToken();
       this.loader     = true;
       const self      = this;
