@@ -1,5 +1,7 @@
 # What's up Genius?
 
+## Please note that this application still in development and is not yet fully functional
+
 ##### Requirements
 - [Ruby MRI](https://www.ruby-lang.org/) 2.5.1
 - [PostgreSQL](https://www.postgresql.org/)
