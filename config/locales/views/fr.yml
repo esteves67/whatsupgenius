@@ -1,52 +1,43 @@
 fr:
   home:
-    ### _brand ###
     brand:
       brand: La puissance de
-    
-    ### index ###
+
     index:
       get_genius_title: Obtiens ton Genius 🧞‍♂️
       get_genius_description: |
         En un clic, crée une playlist collaborative sur <span class="font-weight-bold">Spotify</span>
         et obtiens ton 🤖<span class="font-weight-bold">What's up Genius?</span>.
-        Grâce à lui, permets à tous tes amis d'ajouter des musiques à la playlist depuis WhatsApp ! <br><br>
+        Grâce à lui, ajoute des musiques à ta playlist depuis WhatsApp ! <br><br>
         Oh et, besoin des lyrics ? <span class="font-weight-bold">What's up Genius?</span> 
         te les envoie grâce à la puissance de <span class="font-weight-bold">Genius.com</span> ! 
       ready: Je suis prêt !
 
-    ### _carousel ###
     carousel:
       carousel_title: Comment ça marche ?
-
       first_step:
         title: Première étape ☝️
         description: |
           Entre le nom de la playlist que tu souhaites créer et associer à 
           <span class="font-weight-bold">What's up Genius?</span>
           puis connecte-toi avec ton compte Spotify.
-
       second_step:
         title: Deuxième étape ✌️
         description: |
           OK, playlist créée ! Maintenant, rends-toi sur
           WhatsApp et ajoute à la conversation le numéro de 
           téléphone qui vient de t'être attribué.
-
       third_step:
         title: Troisième étape 🤟
         description: |
           Abracadabra ! Recherche un morceau sur Spotify en 
           tapant simplement "WUP" suivi de la musique que tu souhaites.
           Par exemple, "<span class="font-italic">WUP Booba PGP</span>".
-
       fourth_step:
         title: Dernière étape 🔥
         description: |
           <span class="font-weight-bold">What's up genius?</span> t'envoie le résultat. 
-          Si c'est dans le mile, confirme-lui l'ajout à la playlist. Sinon... Nan, en fait, 
-          il tape toujours juste, hehe.
-
+          Si c'est la musique que tu recherchais, confirme-lui l'ajout à la playlist. 🎤
       last_thing:
         title: Psst 👂
         description: |

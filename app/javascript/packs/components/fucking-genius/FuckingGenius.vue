@@ -1,5 +1,4 @@
 <template lang="html">
-
   <div class="fg d-flex h-100 w-100 align-items-center" :class="{open: open}">
     <div class="fg-container">
       <div class="card bg-dark">
@@ -34,10 +33,7 @@
                 Numéro de téléphone
               </label>
               <div class="input-group">
-                <input v-model="phoneNumber" id="phoneNumber" placeholder="+33 (0) 123456789" class="form-control">
-                <div class="input-group-append">
-                  <span class="input-group-text">{{phoneNumberFormatting}}</span>
-                </div>
+                <vue-phone-number-input dark v-model="phoneNumber" @update="onPhoneUpdate" />
               </div>
 
               <p class="text-center mt-4" v-if="playlistName">
@@ -48,7 +44,7 @@
             </div>
 
             <div class="card-footer text-center">
-              <button class="btn btn-lg btn-success" @click="spotifyLogin" :disabled="!playlistName.length">
+              <button class="btn btn-lg btn-success" @click="spotifyLogin" :disabled="disabledButton">
                 Connexion à Spotify <i class="fab fa-spotify"></i>
               </button>
             </div>
@@ -61,181 +57,170 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
-import { parsePhoneNumberFromString } from 'libphonenumber-js';
-
 function defaultData() {
   return {
-    open:            false,
-    maxLength:       25,
-    playlistName:   '',
-    loader:          false,
-    userCreated:     false,
-    step:            'login',
-    phoneNumber:     '',
-    formattedNumber: ''
+    open:             false,
+    maxLength:        25,
+    playlistName:     '',
+    loader:           false,
+    userCreated:      false,
+    step:             'login',
+    phoneNumber:      '',
+    phoneNumberValid: false
   }
 }
-
 
 export default {
   data: defaultData,
 
   mounted: function() {
-    var self = this;
+    var self = this
+    var newFuckingGenius = document.querySelectorAll('.fucking-genius')
 
-    var newFuckingGenius = document.querySelectorAll('.fucking-genius');
     for (var i = 0; i < newFuckingGenius.length; i++) {
       newFuckingGenius[i].addEventListener('click', function(){
-        self.open = true;
+        self.open = true
       });
     }
   },
 
   computed: {
-    phoneNumberFormatting: function() {
-      var rawPhoneNumber = parsePhoneNumberFromString(this.phoneNumber);
-      if (rawPhoneNumber) {
-        return rawPhoneNumber.number;
+    disabledButton: function() {
+      if (!this.playlistName.length || !this.phoneNumberValid) {
+        return 'disabled'
       }
     }
   },
 
   methods: {
     spotifyLogin: function() {
-      document.cookie = 'playlistName=' + this.playlistName;
-      const userToken = this.generateToken();
-      this.loader     = true;
-      const self      = this;
+      document.cookie = 'playlistName=' + this.playlistName
+      const userToken = this.generateToken()
+      const self      = this
+      this.loader     = true
 
       this.$http.get('/spotify-login', { params: { user_token: userToken } }).then(response => {
-        window.open(response.body.uri);
+        window.open(response.body.uri)
       }, error => {
-        console.log(error.body);
+        console.log(error.body)
       });
 
       window.interval = setInterval(function() {
         self.userNotCreated(userToken)
-      }, 1500);
+      }, 1500)
     },
 
     generateToken: function() {
-      return Math.random().toString(36).substr(2);
+      return Math.random().toString(36).substr(2)
     },
 
     checkUserRequest: function(userToken) {
       this.$http.get('/check-user', { params: { user_token: userToken } }).then(response => {
         if(response.body.status === 'matched') {
-          this.userCreated = true;
+          this.userCreated = true
         }
       });
     },
 
     userNotCreated: function(userToken) {
       if (!this.userCreated) {
-        this.checkUserRequest(userToken);
+        this.checkUserRequest(userToken)
       } else {
-        clearInterval(window.interval);
-        this.geniusBot();
+        clearInterval(window.interval)
+        this.geniusBot()
       }
     },
 
     geniusBot: function() {
       this.$http.get('/bot').then(response => {
-        this.loader = false;
-        this.step   = 'userCreated';
+        this.loader = false
+        this.step   = 'userCreated'
       });
+    },
+
+    onPhoneUpdate(data) {
+      if (data.isValid) {
+        this.phoneNumber = data.formattedNumber
+        this.phoneNumberValid = true
+      } else {
+        this.phoneNumberValid = false
+      }
     }
   }
 }
-
 </script>
 
 <style lang="scss">
+$whatsupgenius: #f76d23;
 
-  $whatsupgenius: #f76d23;
-
-  .fg {
-    position: fixed;
-    z-index: 100;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    transition: opacity .25s ease-out;
-    background-color: rgba(0, 0, 0, 0.75);
-    will-change: transform;
-    overflow: auto;
-
-    .fg-container {
-      min-width: 600px;
-      min-height: 300px;
-      margin: 0 auto;
-      padding: 20px;
-
-      .card {
-        width: 600px;
-        
-        .fg-loader {
-          display:flex;
-          align-items: center;
-          flex-direction: column;
-          justify-content: center;
-          z-index: 10;
-          height: 192px;
-
-          .loader{
-            animation: loading-rotation 1400ms linear infinite;
-            margin: 9px 0;
-
-            circle {
-              stroke: $whatsupgenius;
-              stroke-dasharray: 120;
-              stroke-dashoffset: 0;
-              transform-origin: center;
-              animation: loading-dash 1400ms ease-in-out infinite;
-            }
-          }
-
-          &.white {
-            circle {
-              stroke: #FFFFFF;
-            }
-          }
-        }
-
-        @keyframes loading-rotation {
-          100% { transform: rotate(360deg); }
-        }
-
-        @keyframes loading-dash {
-          0% {
-            stroke-dasharray: 1,200;
+.fg {
+  position: fixed;
+  z-index: 100;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: opacity .25s ease-out;
+  background-color: rgba(0, 0, 0, 0.75);
+  will-change: transform;
+  overflow: auto;
+  .fg-container {
+    min-width: 600px;
+    min-height: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    .card {
+      width: 600px;
+      .fg-loader {
+        display:flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 10;
+        height: 192px;
+        .loader{
+          animation: loading-rotation 1400ms linear infinite;
+          margin: 9px 0;
+          circle {
+            stroke: $whatsupgenius;
+            stroke-dasharray: 120;
             stroke-dashoffset: 0;
+            transform-origin: center;
+            animation: loading-dash 1400ms ease-in-out infinite;
           }
-          50% {
-            stroke-dasharray: 89,200;
-            stroke-dashoffset: -35;
-          }
-          100% {
-            stroke-dasharray: 89,200;
-            stroke-dashoffset: -124;
+        }
+        &.white {
+          circle {
+            stroke: #FFFFFF;
           }
         }
       }
-    }
-
-    &.open {
-      pointer-events: auto;
-      opacity: 1;
-      
-      .fg-container {
-        transform: scale(1);
+      @keyframes loading-rotation {
+        100% { transform: rotate(360deg) }
+      }
+      @keyframes loading-dash {
+        0% {
+          stroke-dasharray: 1,200;
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dasharray: 89,200;
+          stroke-dashoffset: -35;
+        }
+        100% {
+          stroke-dasharray: 89,200;
+          stroke-dashoffset: -124;
+        }
       }
     }
   }
-
+  &.open {
+    pointer-events: auto;
+    opacity: 1;
+    .fg-container { transform: scale(1) }
+  }
+}
 </style>
