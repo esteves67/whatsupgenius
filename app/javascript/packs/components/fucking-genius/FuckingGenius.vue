@@ -60,7 +60,19 @@
           </div>
           
           <div v-else>
-            <p class="font-weight-bold text-center my-3">Félicitations !</p>
+            <div class="success-header">
+              <p class="font-weight-bold text-center my-3">
+                Félicitations !
+              </p>
+              <p>
+                La playlist a bien été créée. Et maintenant ?
+              </p>
+            </div>
+            <div class="success-body">
+              <p>
+                Blabla
+              </p>
+            </div>
           </div>
         </div>
       </div>

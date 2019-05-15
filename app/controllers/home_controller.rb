@@ -32,9 +32,9 @@ class HomeController < ApplicationController
       playlist_name     = cookies[:playlistName]
       new_playlist      = spotify_user.create_playlist!(playlist_name)
       @user.update(playlist_id: new_playlist.id)
-      render json: {
-        status: 'user authenticated'
-      }
+      # We can't respond to js with the API response so I created a view
+      # with a javascript code to close the tab.
+      render 'close_tab'
     else
       render json: {
         status: 'error'
