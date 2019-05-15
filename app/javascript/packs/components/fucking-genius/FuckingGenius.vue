@@ -33,7 +33,13 @@
                 <label for="phone_number" class="mb-3">
                   Numéro de téléphone
                 </label>
-                <vue-phone-number-input dark v-model="phoneNumber" @update="onPhoneUpdate" />
+                <vue-phone-number-input
+                  dark
+                  color="silver"
+                  :translations="translations"
+                  v-model="phoneNumber"
+                  @update="onPhoneUpdate"
+                />
                 <small class="text-muted">
                   Le numéro de téléphone est nécessaire pour vous associer la playlist au numéro WhatsApp
                 </small>
@@ -72,7 +78,13 @@ function defaultData() {
     userCreated:      false,
     step:             'login',
     phoneNumber:      '',
-    phoneNumberValid: false
+    phoneNumberValid: false,
+    translations:     {
+      countrySelectorLabel: 'Code pays',
+      countrySelectorError: 'Choisir un pays',
+      phoneNumberLabel: 'Numéro de téléphone',
+      example: 'Exemple :'
+    }
   }
 }
 
