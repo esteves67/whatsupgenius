@@ -8,6 +8,7 @@ class User < ApplicationRecord
     :token,
     :refresh_token,
     :user_token,
+    :phone_number,
     presence: true)
 
   def self.perform(spotify_user, user_token, phone_number)

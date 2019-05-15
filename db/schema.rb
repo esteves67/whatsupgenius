@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_01_24_230723) do
     t.text "token"
     t.text "playlist_id"
     t.string "user_token"
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

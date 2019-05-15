@@ -29,11 +29,14 @@
                 </div>
               </div>
 
-              <label for="phone_number" class="mb-3">
-                Numéro de téléphone
-              </label>
-              <div class="input-group">
+              <div class="mt-3">
+                <label for="phone_number" class="mb-3">
+                  Numéro de téléphone
+                </label>
                 <vue-phone-number-input dark v-model="phoneNumber" @update="onPhoneUpdate" />
+                <small class="text-muted">
+                  Le numéro de téléphone est nécessaire pour vous associer la playlist au numéro WhatsApp
+                </small>
               </div>
 
               <p class="text-center mt-4" v-if="playlistName">
@@ -97,10 +100,11 @@ export default {
 
   methods: {
     spotifyLogin: function() {
+      this.loader = true
       document.cookie = 'playlistName=' + this.playlistName
+      document.cookie = 'phoneNumber=' + this.phoneNumber
       const userToken = this.generateToken()
-      const self      = this
-      this.loader     = true
+      const self = this
 
       this.$http.get('/spotify-login', { params: { user_token: userToken } }).then(response => {
         window.open(response.body.uri)
