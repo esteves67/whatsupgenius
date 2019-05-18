@@ -5,13 +5,13 @@ class MessageManager
   NEGATIVE_RESPONSES = %w[no non nah nan nope 👎].freeze
 
   def self.track(session_track, query, spotify, user)
-    answer = query.split(' ').first.downcase.strip
+    answer = query.downcase.split(' ')
 
-    if POSITIVE_RESPONSES.include?(answer)
+    if answer.any? { |word| POSITIVE_RESPONSES.include?(word.strip) }
       message = I18n.t('.messages.positive_response')
       spotify.add_to_playlist(user.playlist_id, session_track)
       session_track = nil
-    elsif NEGATIVE_RESPONSES.include?(answer)
+    elsif answer.any? { |word| NEGATIVE_RESPONSES.include?(word.strip) }
       session_track = nil
       message = I18n.t('.messages.negative_response')
     end
