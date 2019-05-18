@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
   def spotify_login
     token = params[:user_token]
-    uri   = URI('https://accounts.spotify.com/authorize')
+    uri = URI('https://accounts.spotify.com/authorize')
     params = {
       response_type: 'code',
       client_id:     ENV['SPOTIFY_CLIENT_ID'],
@@ -23,17 +23,15 @@ class HomeController < ApplicationController
 
   def callback
     spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    user_token   = params[:state]
+    user_token = params[:state]
     phone_number = cookies[:phoneNumber]
 
     @user = User.perform(spotify_user, user_token, phone_number)
 
     if @user.valid?
-      playlist_name     = cookies[:playlistName]
-      new_playlist      = spotify_user.create_playlist!(playlist_name)
+      playlist_name = cookies[:playlistName]
+      new_playlist = spotify_user.create_playlist!(playlist_name)
       @user.update(playlist_id: new_playlist.id)
-      # We can't respond to js with the API response so I created a view
-      # with a javascript code to close the tab.
       render 'close_tab'
     else
       render json: {
@@ -47,17 +45,9 @@ class HomeController < ApplicationController
     user  = User.find_by(user_token: token)
 
     if user
-      render json: {
-        status: 'matched'
-      }
+      render json: { status: 'matched' }
     else
-      render json: {
-        status: 'unmatched'
-      }
+      render json: { status: 'unmatched' }
     end
-  end
-
-  def genius_bot
-    render json: { message: 'Bien joué garçon' }
   end
 end

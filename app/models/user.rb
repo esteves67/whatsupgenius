@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  validates(:spotify_user_id,
+  validates(
+    :spotify_user_id,
     :email,
     :expires,
     :expires_at,
@@ -9,7 +10,8 @@ class User < ApplicationRecord
     :refresh_token,
     :user_token,
     :phone_number,
-    presence: true)
+    presence: true
+  )
 
   def self.perform(spotify_user, user_token, phone_number)
     User.new(

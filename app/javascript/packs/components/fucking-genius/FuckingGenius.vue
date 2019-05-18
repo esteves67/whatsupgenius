@@ -71,8 +71,8 @@
                 <div class="success-how-it-works">
                   <h5>Comment ça marche ?</h5>
                   <p>
-                    Pour rechercher une musique sur Spotify, envoie "WUP" suivi de ta recherche.
-                    Par exemple, si tu envoies "<span class="font-italic">WUP snow moha la squale</span>",
+                    Pour rechercher une musique sur Spotify, envoie "WUG" suivi de ta recherche.
+                    Par exemple, si tu envoies "<span class="font-italic">WUG snow moha la squale</span>",
                     What's up genius t'enverra le lien Spotify du morceau <span class="font-italic">Snow</span> de
                     Moha la squale. Suis ses instructions si tu souhaites l'ajouter à ta playlist ou obtenir les lyrics !
                   </p>
