@@ -6,6 +6,10 @@ class HomeController < ApplicationController
   def index
   end
 
+  def twilio_number
+    render json: { twilioNumber: ENV['TWILIO_PHONE_NUMBER']}
+  end
+
   def spotify_login
     token = params[:user_token]
     uri = URI('https://accounts.spotify.com/authorize')

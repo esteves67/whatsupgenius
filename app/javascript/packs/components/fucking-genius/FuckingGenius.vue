@@ -62,19 +62,18 @@
           <div v-else class="card-body">
             <div class="success-body">
               <p>
-                Il ne reste te reste plus qu'à ajouter le numéro ci-dessous sur WhatsApp
+                Il ne te reste plus qu'à ajouter le numéro ci-dessous sur WhatsApp
                 et à lui envoyer le message "<span class="font-weight-bold">join laugh-list</span>" pour valider ton numéro.
                 <div class="success-phone-number">
-                  <h2>+1 415 523 8886</h2>
+                  <h2>{{ this.twilioNumber }}</h2>
                   <small>N'oublie pas d'envoyer le message "<span class="font-weight-bold">join laugh-list</span>" pour valider ton numéro.</small>
                 </div>
                 <div class="success-how-it-works">
                   <h5>Comment ça marche ?</h5>
                   <p>
-                    Pour rechercher une musique sur Spotify, envoie "WUG" suivi de ta recherche.
-                    Par exemple, si tu envoies "<span class="font-italic">WUG snow moha la squale</span>",
-                    What's up genius t'enverra le lien Spotify du morceau <span class="font-italic">Snow</span> de
-                    Moha la squale. Suis ses instructions si tu souhaites l'ajouter à ta playlist ou obtenir les lyrics !
+                    Pour rechercher une musique sur Spotify ou les lyrics sur Genius, envoie "WUG" suivi de ta recherche.
+                    Par exemple, envoie "<span class="font-italic">WUG snow moha la squale</span>"
+                    et laisse-toi guider !
                   </p>
                 </div>
               </p>
@@ -95,6 +94,7 @@ function defaultData() {
     loader:           false,
     userCreated:      false,
     step:             'login',
+    twilioNumber:     '',
     phoneNumber:      '',
     phoneNumberValid: false,
     translations:     {
@@ -118,6 +118,8 @@ export default {
         self.open = true
       });
     }
+
+    this.fillTwilioNumber();
   },
 
   computed: {
@@ -137,6 +139,14 @@ export default {
   },
 
   methods: {
+    fillTwilioNumber: function() {
+      this.$http.get('/twilio-number').then(response => {
+        this.twilioNumber = response.body.twilioNumber
+      }, error => {
+        console.log(error.body)
+      })
+    },
+
     spotifyLogin: function() {
       this.loader = true
       document.cookie = 'playlistName=' + this.playlistName

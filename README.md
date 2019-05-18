@@ -25,6 +25,11 @@ cd whatsupgenius
 bundle install
 ```
 
+then
+```bash
+npm install
+```
+
 Create a PostgreSQL role:
 ```sql
 psql
@@ -70,8 +75,8 @@ Now, go to `application.yml` then fill the `GENIUS_ACCESS_TOKEN` environment var
 Twilio allows us to send a message to a Whatsapp number that we control. Then, Twilio will send an HTTP request, or webhook, to our application. 
 We will use this to respond to incoming messages and add songs to the playlist.
 
-Create a [Twilio account](https://www.twilio.com/try-twilio).
-Than, add your *authentification token* to the `application.yml`.
+Create a [Twilio account](https://www.twilio.com/try-twilio) then add your *authentification token* to the `application.yml`.
+Now, go to [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox), copy the phone number and add it to `application.yml` too.
 
 ### Just a last thing to do
 
@@ -82,7 +87,7 @@ Start Ngrok in a terminal tab like this:
 Now that Ngrok is started, copy the forwarding link (*looks like http://xxxxx.ngrok.io*).
 Add the `/twilio/messages` path to it like `http://xxxxx.ngrock.io/twilio/messages`.
 
-Go to the [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox) and enter this URL to `WHEN A MESSAGE COMES IN`.
+Go back to the [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox) and enter this URL to `WHEN A MESSAGE COMES IN`.
 Now, we'll allow our phone number to send messages to the Sandbox. Follow this link: [Twilio Whatsapp Learn](https://www.twilio.com/console/sms/whatsapp/learn). 
 Create a contact on your phone with the number given on the page and send to it the code (*something like `join xxx-list`*).
 
