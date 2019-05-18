@@ -1,0 +1,7 @@
+fr:
+  messages:
+    positive_response: Ok, je l'ajoute à la playlist !
+    negative_response: Hmm ok, que veux-tu ajouter ?
+
+    want_to_add: "Veux-tu ajouter %{track_name} de %{track_artist} ?"
+    no_result: "Je n'ai rien trouvé avec %{query}, tu t'es fail ou le son n'est pas sur Spotify !"

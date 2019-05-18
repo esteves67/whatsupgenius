@@ -3,13 +3,15 @@
 # Spotify service
 class Spotify
   def initialize(user)
-    @user = RSpotify::User.new('id': user.spotify_user_id,
-                               'credentials': {
-                                 'expires': user.expires,
-                                 'expires_at': user.expires_at,
-                                 'token': user.token,
-                                 'refresh_token': user.refresh_token
-                               })
+    @user = RSpotify::User.new(
+      'id':          user.spotify_user_id,
+      'credentials': {
+        'expires':       user.expires,
+        'expires_at':    user.expires_at,
+        'token':         user.token,
+        'refresh_token': user.refresh_token
+      }
+    )
   end
 
   def self.track_search(query)

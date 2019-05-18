@@ -3,7 +3,7 @@
     <div class="fg-container">
       <div class="card bg-dark">
         <div class="card-header text-center">
-          <h4>Abracadabra...</h4>
+          <h4>{{ title }}</h4>
         </div>
 
         <div class="fg-loader" v-if="loader">
@@ -59,18 +59,24 @@
             </div>
           </div>
           
-          <div v-else>
-            <div class="success-header">
-              <p class="font-weight-bold text-center my-3">
-                Félicitations !
-              </p>
-              <p>
-                La playlist a bien été créée. Et maintenant ?
-              </p>
-            </div>
+          <div v-else class="card-body">
             <div class="success-body">
               <p>
-                Blabla
+                Il ne reste te reste plus qu'à ajouter le numéro ci-dessous sur WhatsApp
+                et à lui envoyer le message "<span class="font-weight-bold">join laugh-list</span>" pour valider ton numéro.
+                <div class="success-phone-number">
+                  <h2>+1 415 523 8886</h2>
+                  <small>N'oublie pas d'envoyer le message "<span class="font-weight-bold">join laugh-list</span>" pour valider ton numéro.</small>
+                </div>
+                <div class="success-how-it-works">
+                  <h5>Comment ça marche ?</h5>
+                  <p>
+                    Pour rechercher une musique sur Spotify, envoie "WUP" suivi de ta recherche.
+                    Par exemple, si tu envoies "<span class="font-italic">WUP snow moha la squale</span>",
+                    What's up genius t'enverra le lien Spotify du morceau <span class="font-italic">Snow</span> de
+                    Moha la squale. Suis ses instructions si tu souhaites l'ajouter à ta playlist ou obtenir les lyrics !
+                  </p>
+                </div>
               </p>
             </div>
           </div>
@@ -115,6 +121,14 @@ export default {
   },
 
   computed: {
+    title: function() {
+      if (this.step == 'login') {
+        return 'Abracadabra...'
+      } else {
+        return 'Cool, la playlist a bien été créée ! 🔥'
+      }
+    },
+
     disabledButton: function() {
       if (!this.playlistName.length || !this.phoneNumberValid) {
         return 'disabled'
@@ -202,6 +216,9 @@ $whatsupgenius: #f76d23;
     padding: 20px;
     .card {
       width: 600px;
+      .card-header {
+        h4 { margin-bottom: 0 }
+      }
       .fg-loader {
         display:flex;
         align-items: center;
@@ -241,6 +258,19 @@ $whatsupgenius: #f76d23;
         100% {
           stroke-dasharray: 89,200;
           stroke-dashoffset: -124;
+        }
+      }
+      .success-body {
+        text-align: justify;
+        .success-phone-number {
+          text-align: center;
+          margin: 1.5rem 0;
+          h2 { color: $whatsupgenius }
+          small { color: #a5a5a5 }
+        }
+        .success-how-it-works {
+          font-size: .9rem;
+          color: #eaeaea;
         }
       }
     }

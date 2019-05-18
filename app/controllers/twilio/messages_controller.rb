@@ -6,42 +6,27 @@ module Twilio
     skip_before_action :verify_authenticity_token
 
     def create
-      query = params[:body]
-      user = find_user(params[:from])
+      query = params[:Body]
+      user = User.sender(params[:From])
       spotify = Spotify.new(user)
 
       if session[:track]
-        answer = query.split(' ').first.downcase.strip
-        if %w[yes yeah yep yup 👍].include? answer
-          message = 'OK, adding that track now.'
-          spotify.add_to_playlist(User.last.playlist_id, session[:track])
-          session[:track] = nil
-        elsif %w[no nah nope 👎].include? answer
-          session[:track] = nil
-          message = 'What do you want to add?'
-        end
+        service_responses = MessageManager.track(session[:track], query, spotify, user)
+
+        session[:track] = service_responses[0]
+        message = service_responses[1]
       end
 
       unless message
-        track = Spotify.track_search(query)
-        if track
-          session[:track] = track.uri
-          message = "Did you want to add _#{track.name}_ by _#{track.artists.map(&:name).to_sentence}_?"
-        else
-          message = "I couldn't find any songs by searching for '#{body}'. Try something else."
-        end
+        service_responses = MessageManager.message(session[:track], query)
+
+        session[:track] = service_responses[0]
+        message = service_responses[1]
       end
 
       response = Twilio::TwiML::MessagingResponse.new
       response.message(body: message)
-      render xml: response.to_xml
+      render(xml: response.to_xml)
     end
-  end
-
-private
-
-  def find_user(phone_number)
-    phone_number = phone_number.remove('whatsapp:')
-    User.find_by(phone_number: phone_number)
   end
 end

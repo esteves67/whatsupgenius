@@ -20,7 +20,12 @@ class User < ApplicationRecord
       token:           spotify_user.credentials['token'],
       refresh_token:   spotify_user.credentials['refresh_token'],
       user_token:      user_token,
-      phone_number:    phone_number
+      phone_number:    phone_number.tr(' ', '+')
     )
+  end
+
+  def self.sender(from)
+    phone_number = from.remove('whatsapp:')
+    User.find_by(phone_number: phone_number)
   end
 end

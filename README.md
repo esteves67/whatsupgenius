@@ -69,7 +69,7 @@ rails s
 
 Then, you have to start Ngrok in another terminal tab:
 ```bash
-path/to/ngrock http 3000
+./ngrok http 3000
 ```
 
 ### Just a last thing to do
