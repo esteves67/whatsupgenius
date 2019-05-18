@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.text    :playlist_id
       t.string  :user_token
       t.string  :phone_number
+      t.string  :last_request
       t.timestamps
     end
   end

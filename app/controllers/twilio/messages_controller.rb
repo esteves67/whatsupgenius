@@ -19,6 +19,7 @@ module Twilio
       unless message
         if query.split.first.casecmp('wug').zero?
           query = query.remove('wug ')
+          user.update(last_request: query)
           service_responses = MessageManager.message(session[:track], query)
 
           session[:track] = service_responses[0]

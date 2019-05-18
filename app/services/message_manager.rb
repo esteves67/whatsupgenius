@@ -13,9 +13,9 @@ class MessageManager
 
     if track
       session_track = track.uri
-      message = I18n.t('.messages.want_to_add_html', track_name: track.name, track_artist: track.artists.map(&:name).to_sentence)
+      message = I18n.t('.messages.want_to_add', track_name: track.name, track_artist: track.artists.map(&:name).to_sentence)
     else
-      message = I18n.t('.messages.no_result_html', query: query)
+      message = I18n.t('.messages.no_result', query: query)
     end
 
     [session_track, message]
@@ -24,13 +24,16 @@ class MessageManager
   # Here, we handling the user's response after being sent a result
   def self.track(session_track, query, spotify, user)
     answer = query.split
-    if answer_checker(answer)
+    if answer_checker(answer, 'positive')
       message = I18n.t('.messages.positive_response')
       spotify.add_to_playlist(user.playlist_id, session_track)
       session_track = nil
-    elsif answer_checker(answer, false)
+    elsif answer_checker(answer, 'negative')
       session_track = nil
       message = I18n.t('.messages.negative_response')
+    else
+      session_track = nil
+      message = GeniusLyrics.get_lyrics(user.last_request)
     end
 
     [session_track, message]
@@ -39,11 +42,13 @@ class MessageManager
   class << self
     private
 
-    def answer_checker(answer, positive = true)
-      if positive
+    def answer_checker(answer, type)
+      if type == 'positive'
         answer.any? { |word| POSITIVE_RESPONSES.include?(word.strip) }
-      else
+      elsif type == 'negative'
         answer.any? { |word| NEGATIVE_RESPONSES.include?(word.strip) }
+      else
+        answer.include?('lyrics')
       end
     end
   end

@@ -114,11 +114,16 @@ GEM
       sassc (>= 1.11)
     foreman (0.85.0)
       thor (~> 0.19.1)
+    genius (0.1.1)
+      httparty (~> 0.11.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (3.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -315,6 +320,7 @@ DEPENDENCIES
   figaro (~> 1.1, >= 1.1.1)
   font-awesome-sass (~> 5.6, >= 5.6.1)
   foreman (~> 0.85.0)
+  genius (~> 0.1.1)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.3)
   listen (>= 3.0.5, < 3.2)
@@ -339,4 +345,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.17.1
+   1.17.3

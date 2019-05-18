@@ -34,9 +34,7 @@ class HomeController < ApplicationController
       @user.update(playlist_id: new_playlist.id)
       render 'close_tab'
     else
-      render json: {
-        status: 'error'
-      }
+      render json: { status: 'error' }
     end
   end
 
@@ -49,5 +47,9 @@ class HomeController < ApplicationController
     else
       render json: { status: 'unmatched' }
     end
+  end
+
+  def genius_bot
+    head 200, content_type: 'json'
   end
 end
