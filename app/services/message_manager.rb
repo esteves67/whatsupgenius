@@ -27,12 +27,9 @@ class MessageManager
     if answer_checker(answer, 'positive')
       message = I18n.t('.messages.positive_response')
       spotify.add_to_playlist(user.playlist_id, session_track)
-      session_track = nil
     elsif answer_checker(answer, 'negative')
-      session_track = nil
       message = I18n.t('.messages.negative_response')
-    else
-      session_track = nil
+    elsif answer_checker(answer, 'lyrics')
       message = GeniusLyrics.get_lyrics(user.last_request)
     end
 
@@ -47,7 +44,7 @@ class MessageManager
         answer.any? { |word| POSITIVE_RESPONSES.include?(word.strip) }
       elsif type == 'negative'
         answer.any? { |word| NEGATIVE_RESPONSES.include?(word.strip) }
-      else
+      elsif type == 'lyrics'
         answer.include?('lyrics')
       end
     end

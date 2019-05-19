@@ -12,7 +12,7 @@ module Twilio
       if session[:track]
         service_responses = MessageManager.track(session[:track], query, spotify, user)
 
-        session[:track] = service_responses[0]
+        session[:track] = nil
         message = service_responses[1]
       end
 
