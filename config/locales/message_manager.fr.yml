@@ -31,3 +31,5 @@ fr:
       ["yes", "add", "oui", "yeah", "ouais", "yep", "yup", "👍"]
     negative_keywords:
       ["no", "non", "nah", "nan", "nope", "nop", "👎"]
+
+    no_last_request: Effectuez d'abord une recherche avec "wug _votre\_recherche_" ou précisez votre recherche après le mot-clé "lyrics"

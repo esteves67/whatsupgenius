@@ -44,7 +44,9 @@ module Twilio
       elsif query.split.first.casecmp('lyrics').zero?
         query = query.remove('lyrics ')
         # If a user sends only "lyrics", the bot returns the lyrics of the last searched song with the 'wug' keyword
-        query = user.last_request if query == 'lyrics'
+        if query == 'lyrics'
+          query = user.last_request || I18n.t('.messages.no_last_request')
+        end
 
         session[:track] = nil
         GeniusLyrics.get_lyrics(query)
