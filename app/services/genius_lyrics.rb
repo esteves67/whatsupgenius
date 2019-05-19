@@ -8,7 +8,7 @@ class GeniusLyrics
     if song
       song.url
     else
-      I18n.t('.messages.no_lyrics')
+      I18n.t('.messages.no_lyrics_sentences').sample
     end
   end
 end
