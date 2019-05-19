@@ -19,10 +19,15 @@ fr:
     no_result_sentences:
       - "Je n'ai rien trouvé avec _%{query}_, soit le son n'existe pas sur Spotify, soit tu t'es fail hehe"
       - "Hmm, aucun résultat pour _%{query}_ désolé 🤷‍♂️"
-      - "Apparemment il n'y a aucun son pour _%{query}_ sur Spotify 😣"
+      - "Il n'y a aucune musique appelée _%{query}_ sur Spotify 😣"
       - "Bon, reste calme, mais je n'ai rien trouvé pour _%{query}_..."
 
     no_lyrics_sentences:
       - "Oops, je n'ai pas trouvé les lyrics sur Genius.com 🧐"
       - "Shit, les lyrics ne sont pas sur Genius.com ☠️"
       - "Capitaine, on a un problème : je n'ai rien trouvé sur Genius.com"
+
+    positive_keywords:
+      ["yes", "add", "oui", "yeah", "ouais", "yep", "yup", "👍"]
+    negative_keywords:
+      ["no", "non", "nah", "nan", "nope", "nop", "👎"]

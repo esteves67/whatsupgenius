@@ -1,6 +1,16 @@
 # What's up Genius?
 
-![](readme_gif.gif)
+> This application is not intended to be published. I don't want to monetize it, so the costs would be too important.
+Think of it as a technical gateway demonstration between the Twilio's API, Spotify and Genius.com.
+I developed it with Ruby on Rails and the web application form is a Vue.js component.
+Feel free to install it, try it and even modify it to learn new things to the bot, it's pretty cool!
+
+PS: For a production version, the operation would be a little different. In the Twilio's sandbox mode, the user must send the
+first message to the bot to allow the incoming messages from the phone number. I think that for a production, the bot should send
+a first message explaining how to use it.
+
+![](readme_gif1.gif)
+![](readme_gif2.gif)
 
 ##### Requirements
 - [Ruby MRI](https://www.ruby-lang.org/) 2.5.1
@@ -12,12 +22,10 @@
 - [Slim](http://slim-lang.com/)
 - [Scss](http://sass-lang.com/)
 
-##### Tools _(recommended, not mandatory)_
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Homebrew](http://brew.sh/)
-- [RVM](https://github.com/rvm/rvm) (_via curl_)
-
 ## Setup
+
+Clone the project:
+`git@github.com:escanxr/whatsupgenius.git`
 
 Set up the dependencies:
 ```bash
@@ -32,7 +40,6 @@ npm install
 
 Create a PostgreSQL role:
 ```sql
-psql
 CREATE ROLE whatsupgenius WITH PASSWORD 'choose_a_password';
 ```
 
@@ -104,6 +111,9 @@ Psst, open your Spotify application: a new playlist has been created!
 Now, you are able to manage this one with Whatsapp. Send to the Twilio contact your query preceded by 'wug' (What's up genius acronym).
 If the first word of the query is 'wug', it's sent to Spotify and, if there's a result, Twilio returns it in the conversation.
 This is the song that you wanted? Ok, so you just have to respond to the bot with something like `'yes', 'oui', 'yeah', 'ouais', 'yep', 'yup' or '👍'`.
-If it's not what you wanted, type `'no', 'non', 'nah', 'nan', 'nope' or '👎'`.
+If it's not what you wanted, type `'no', 'non', 'nah', 'nan', 'nope', 'nop' or '👎'`.
 
-You can easily add some available responses within `MessageManager` service.
+You can also reply to the bot by "lyrics" to get the lyrics without adding the sound to the playlist.
+If you want to directly search the lyrics on Genius, just type "lyrics _your\_query_"!
+
+You can easily add some available responses within `message_manager` locale.

@@ -3,8 +3,8 @@
 class MessageManager
   # If you want to add some responses that will be interpreted,
   # just put them within these constants!
-  POSITIVE_RESPONSES = %w[yes add ajoute oui yeah ouais yep yup 👍].freeze
-  NEGATIVE_RESPONSES = %w[no non nah nan nope 👎].freeze
+  POSITIVE_KEYWORDS = I18n.t('.messages.positive_keywords').freeze
+  NEGATIVE_KEYWORDS = I18n.t('.messages.negative_keywords').freeze
 
   # This method is used to manage user's message if the first word
   # of the message is 'wug'
@@ -23,7 +23,7 @@ class MessageManager
 
   # Here, we handling the user's response after being sent a result
   def self.track(session_track, query, spotify, user)
-    answer = query.split.map { |word| word.gsub(/[[:punct:]]/, '') }
+    answer = query.split
     if answer_checker(answer, 'positive')
       message = I18n.t('.messages.positive_responses').sample
       spotify.add_to_playlist(user.playlist_id, session_track)
@@ -41,9 +41,9 @@ class MessageManager
 
     def answer_checker(answer, type)
       if type == 'positive'
-        answer.any? { |word| POSITIVE_RESPONSES.include?(word.strip) }
+        answer.any? { |word| POSITIVE_KEYWORDS.include?(word.strip) }
       elsif type == 'negative'
-        answer.any? { |word| NEGATIVE_RESPONSES.include?(word.strip) }
+        answer.any? { |word| NEGATIVE_KEYWORDS.include?(word.strip) }
       elsif type == 'lyrics'
         answer.include?('lyrics')
       end
