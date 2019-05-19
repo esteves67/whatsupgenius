@@ -76,7 +76,8 @@ Twilio allows us to send a message to a Whatsapp number that we control. Then, T
 We will use this to respond to incoming messages and add songs to the playlist.
 
 Create a [Twilio account](https://www.twilio.com/try-twilio) then add your *authentification token* to the `application.yml`.
-Now, go to [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox), copy the phone number and add it to `application.yml` too.
+Now, go to [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox), copy the phone number and add it to `application.yml`.
+Also copy the code that looks like `join xxx-list` then add it to `application.yml`.
 
 ### Just a last thing to do
 
@@ -90,6 +91,8 @@ Add the `/twilio/messages` path to it like `http://xxxxx.ngrock.io/twilio/messag
 Go back to the [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox) and enter this URL to `WHEN A MESSAGE COMES IN`.
 Now, we'll allow our phone number to send messages to the Sandbox. Follow this link: [Twilio Whatsapp Learn](https://www.twilio.com/console/sms/whatsapp/learn). 
 Create a contact on your phone with the number given on the page and send to it the code (*something like `join xxx-list`*).
+
+### Don't forget to restart your server to take into account the changes within application.yml
 
 ### That's all, let's go!
 

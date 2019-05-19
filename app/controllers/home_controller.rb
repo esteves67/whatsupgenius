@@ -6,8 +6,11 @@ class HomeController < ApplicationController
   def index
   end
 
-  def twilio_number
-    render json: { twilioNumber: ENV['TWILIO_PHONE_NUMBER']}
+  def twilio_data
+    render json: {
+      twilioNumber:   ENV['TWILIO_PHONE_NUMBER'],
+      twilioListCode: ENV['TWILIO_LIST_CODE']
+    }
   end
 
   def spotify_login
@@ -51,9 +54,5 @@ class HomeController < ApplicationController
     else
       render json: { status: 'unmatched' }
     end
-  end
-
-  def genius_bot
-    head 200, content_type: 'json'
   end
 end

@@ -66,7 +66,7 @@
                 et à lui envoyer le message "<span class="font-weight-bold">join laugh-list</span>" pour valider ton numéro.
                 <div class="success-phone-number">
                   <h2>{{ this.twilioNumber }}</h2>
-                  <small>N'oublie pas d'envoyer le message "<span class="font-weight-bold">join laugh-list</span>" pour valider ton numéro.</small>
+                  <small>N'oublie pas d'envoyer le message "<span class="font-weight-bold">{{ this.twilioListCode }}</span>" pour valider ton numéro.</small>
                 </div>
                 <div class="success-how-it-works">
                   <h5>Comment ça marche ?</h5>
@@ -95,6 +95,7 @@ function defaultData() {
     userCreated:      false,
     step:             'login',
     twilioNumber:     '',
+    twilioListCode:   '',
     phoneNumber:      '',
     phoneNumberValid: false,
     translations:     {
@@ -119,7 +120,7 @@ export default {
       });
     }
 
-    this.fillTwilioNumber();
+    this.fillTwilioData();
   },
 
   computed: {
@@ -139,9 +140,10 @@ export default {
   },
 
   methods: {
-    fillTwilioNumber: function() {
-      this.$http.get('/twilio-number').then(response => {
+    fillTwilioData: function() {
+      this.$http.get('/twilio-data').then(response => {
         this.twilioNumber = response.body.twilioNumber
+        this.twilioListCode = response.body.twilioListCode
       }, error => {
         console.log(error.body)
       })
@@ -182,15 +184,9 @@ export default {
         this.checkUserRequest(userToken)
       } else {
         clearInterval(window.interval)
-        this.geniusBot()
-      }
-    },
-
-    geniusBot: function() {
-      this.$http.get('/bot').then(response => {
         this.loader = false
-        this.step   = 'userCreated'
-      });
+        this.step = 'userCreated'
+      }
     },
 
     onPhoneUpdate(data) {

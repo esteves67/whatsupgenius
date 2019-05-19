@@ -3,7 +3,7 @@ fr:
     positive_response: Ok, je l'ajoute à la playlist !
     negative_response: Hmm ok, autre chose ?
 
-    want_to_add: "J'ai trouvé \"%{track_name}\" de %{track_artist} ! Je l'ajoute à ta playlist ? 🧐 Pour les lyrics, envoie \"lyrics\" !"
-    no_result: "Je n'ai rien trouvé avec \"%{query}\", tu t'es fail ou le son n'est pas sur Spotify !"
+    want_to_add: "J'ai trouvé _%{track_name}_ de *%{track_artist}* ! Je l'ajoute à ta playlist ? 🧐 Pour les lyrics, envoie *lyrics* !"
+    no_result: "Je n'ai rien trouvé avec _%{query}_, soit le son n'existe pas sur Spotify, soit tu t'es fail hehe"
 
     no_lyrics: Oops, je n'ai pas trouvé les lyrics sur Genius.com 🧐
