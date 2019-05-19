@@ -23,7 +23,7 @@
                 </small></span>
               </label>
               <div class="input-group">
-                <input v-model="playlistName" :maxLength="maxLength" id="playlistName" placeholder="What's up Genius?" class="form-control">
+                <input v-model="playlistName" :maxLength="maxLength" id="playlistName" autocomplete="off" placeholder="What's up Genius?" class="form-control">
                 <div class="input-group-append">
                   <span class="input-group-text">{{maxLength - playlistName.length}} caractères restants</span>
                 </div>
