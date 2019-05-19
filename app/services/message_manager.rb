@@ -23,7 +23,7 @@ class MessageManager
 
   # Here, we handling the user's response after being sent a result
   def self.track(session_track, query, spotify, user)
-    answer = query.split
+    answer = query.split.map { |word| word.gsub(/[[:punct:]]/, '') }
     if answer_checker(answer, 'positive')
       message = I18n.t('.messages.positive_responses').sample
       spotify.add_to_playlist(user.playlist_id, session_track)
