@@ -103,7 +103,7 @@ Create a contact on your phone with the number given on the page and send to it 
 
 ### That's all, let's go!
 
-## How to add a music to the playlist?
+## How to add a music to the playlist or get the lyrics?
 
 On the homepage, click the '*I am ready*' button. Enter a playlist name and your phone number, then login with your Spotify account.
 Psst, open your Spotify application: a new playlist has been created!
