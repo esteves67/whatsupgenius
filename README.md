@@ -1,6 +1,6 @@
 # What's up Genius?
 
-## Please note that this application still in development and is not yet fully functional
+![](readme_gif.gif)
 
 ##### Requirements
 - [Ruby MRI](https://www.ruby-lang.org/) 2.5.1
