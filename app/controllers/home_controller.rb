@@ -8,8 +8,8 @@ class HomeController < ApplicationController
 
   def twilio_data
     render json: {
-      twilioNumber:   ENV['TWILIO_PHONE_NUMBER'],
-      twilioListCode: ENV['TWILIO_LIST_CODE']
+      twilioNumber:   Rails.application.credentials.twilio[:phone_number],
+      twilioListCode: Rails.application.credentials.twilio[:list_code]
     }
   end
 
@@ -18,7 +18,7 @@ class HomeController < ApplicationController
     uri = URI('https://accounts.spotify.com/authorize')
     params = {
       response_type: 'code',
-      client_id:     ENV['SPOTIFY_CLIENT_ID'],
+      client_id:     Rails.application.credentials.spotify[:client_id],
       scope:         'playlist-modify-public user-read-email',
       redirect_uri:  auth_spotify_callback_url,
       state:         token

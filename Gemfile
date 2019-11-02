@@ -3,35 +3,32 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.3'
 
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 6.0'
 
 # DSLs
-gem 'coffee-rails', '~> 4.2'
 gem 'sassc-rails', '~> 2.1'
 gem 'slim-rails', '~> 3.2'
 
 # Helpers
-gem 'bootsnap', '>= 1.1.0', require: false
-gem 'figaro', '~> 1.1', '>= 1.1.1'
-gem 'jbuilder', '~> 2.5'
+gem 'bootsnap', '~> 1.4', '>= 1.4.5', require: false
+gem 'jbuilder', '~> 2.9', '>= 2.9.1'
 
 # Assets
-gem 'bootstrap', '~> 4.2', '>= 4.2.1'
-gem 'font-awesome-sass', '~> 5.6', '>= 5.6.1'
-gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
-gem 'webpacker', '~> 3.5', '>= 3.5.5'
+gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
+gem 'webpacker', '~> 4.0', '>= 4.0.7'
 
 # Javascript tools
-gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
+gem 'turbolinks', '~> 5.2', '>= 5.2.1'
+gem 'uglifier', '~> 4.2'
 
 # APIs
 gem 'genius', '~> 0.1.1'
-gem 'rspotify', '~> 2.4', '>= 2.4.1'
-gem 'twilio-ruby', '~> 5.19'
+gem 'rspotify', '~> 2.6'
+gem 'twilio-ruby', '~> 5.29'
 
 # I'm using a fork of omniauth-oauth2 to fix the redirection
 # problem with RSpotify.
@@ -43,17 +40,17 @@ end
 
 group :development do
   gem 'capistrano-rails', '~> 1.4'
-  gem 'foreman', '~> 0.85.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'puma', '~> 3.11'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'foreman', '~> 0.86.0'
+  gem 'listen', '~> 3.2'
+  gem 'puma', '~> 4.2', '>= 4.2.1'
+  gem 'spring', '~> 2.1'
+  gem 'spring-watcher-listen', '~> 2.0', '>= 2.0.1'
+  gem 'web-console', '~> 4.0', '>= 4.0.1'
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'chromedriver-helper'
-  gem 'rspec-rails', '~> 3.8', '>= 3.8.1'
-  gem 'selenium-webdriver'
+  gem 'capybara', '~> 3.29'
+  gem 'chromedriver-helper', '~> 2.1', '>= 2.1.1'
+  gem 'rspec-rails', '~> 3.9'
+  gem 'selenium-webdriver', '~> 3.142', '>= 3.142.6'
 end

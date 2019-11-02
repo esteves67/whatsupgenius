@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
-begin
-  require 'rspotify/oauth'
+require 'rspotify/oauth'
 
-  RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])
+RSpotify.authenticate(
+  Rails.application.credentials.spotify[:client_id],
+  Rails.application.credentials.spotify[:client_secret]
+)
 
-  Rails.application.config.middleware.use OmniAuth::Builder do
-    provider(
-      :spotify,
-      ENV['SPOTIFY_CLIENT_ID'],
-      ENV['SPOTIFY_CLIENT_SECRET'],
-      scope:                  'playlist-modify-public user-read-email',
-      provider_ignores_state: true
-    )
-  end
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider(:spotify,
+           Rails.application.credentials.spotify[:client_id],
+           Rails.application.credentials.spotify[:client_secret],
+           scope:                  'playlist-modify-public user-read-email',
+           provider_ignores_state: true)
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GeniusLyrics
-  Genius.access_token = ENV['GENIUS_ACCESS_TOKEN']
+  Genius.access_token = Rails.application.credentials.genius[:access_token]
 
   def self.get_lyrics(query)
     song = Genius::Song.search(query).first

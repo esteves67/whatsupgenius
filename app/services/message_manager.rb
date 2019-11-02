@@ -37,7 +37,7 @@ class MessageManager
   end
 
   class << self
-    private
+  private
 
     def answer_checker(answer, type)
       if type == 'positive'

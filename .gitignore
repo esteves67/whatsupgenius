@@ -12,18 +12,20 @@
 !/storage/.keep
 
 /node_modules
+/public/packs
+/public/packs-test
 /yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+.rspec
 
 /public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials/development.key
 
-# RAILS
-/config/application.yml
-/config/database.yml
-.rspec
 
 # That would be a pity
 /config/database.yml
@@ -41,8 +43,4 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-/public/packs
-/public/packs-test
-/node_modules
-yarn-debug.log*
-.yarn-integrity
+.idea/*
