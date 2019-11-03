@@ -27,9 +27,6 @@ yarn-debug.log*
 /config/credentials/development.key
 /config/credentials/production.key
 
-# That would be a pity
-/config/database.yml
-
 # OSX
 .DS_Store
 .AppleDouble
