@@ -26,7 +26,6 @@ yarn-debug.log*
 /config/master.key
 /config/credentials/development.key
 
-
 # That would be a pity
 /config/database.yml
 
