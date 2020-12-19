@@ -5,10 +5,6 @@ Think of it as a technical gateway demonstration between the Twilio's API, Spoti
 I developed it with Ruby on Rails and the web application form is a Vue.js component.
 Feel free to install it, try it and even modify it to learn new things to the bot, it's pretty cool!
 
-> PS: For a production version, the operation would be a little different. In the Twilio's sandbox mode, the user must send the
-first message to the bot to allow the incoming messages from the phone number. I think that for a production, the bot should send
-a first message explaining how to use it.
-
 ![](readme_gif1.gif)
 ![](readme_gif2.gif)
 
