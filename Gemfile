@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.7.2'
 
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails', '~> 6.0'
@@ -46,11 +46,4 @@ group :development do
   gem 'spring', '~> 2.1'
   gem 'spring-watcher-listen', '~> 2.0', '>= 2.0.1'
   gem 'web-console', '~> 4.0', '>= 4.0.1'
-end
-
-group :test do
-  gem 'capybara', '~> 3.29'
-  gem 'chromedriver-helper', '~> 2.1', '>= 2.1.1'
-  gem 'rspec-rails', '~> 3.9'
-  gem 'selenium-webdriver', '~> 3.142', '>= 3.142.6'
 end

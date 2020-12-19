@@ -13,7 +13,7 @@ a first message explaining how to use it.
 ![](readme_gif2.gif)
 
 ##### Requirements
-- [Ruby MRI](https://www.ruby-lang.org/) 2.6.3
+- [Ruby MRI](https://www.ruby-lang.org/) 2.7.2
 - [Rails](http://rubyonrails.org/) 6.0.x
 - [PostgreSQL](https://www.postgresql.org/)
 - [Ngrok](https://ngrok.com/)
