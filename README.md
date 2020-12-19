@@ -5,8 +5,8 @@ Think of it as a technical gateway demonstration between the Twilio's API, Spoti
 I developed it with Ruby on Rails and the web application form is a Vue.js component.
 Feel free to install it, try it and even modify it to learn new things to the bot, it's pretty cool!
 
-![](readme_gif1.gif)
-![](readme_gif2.gif)
+![What's up Genius? demo 1](https://media.giphy.com/media/GeTuWzucRMZp27d2U0/giphy.gif)
+![What's up Genius? demo 1](https://media.giphy.com/media/Nq6T8LX3CEpegoA1BO/giphy.gif)
 
 ##### Requirements
 - [Ruby MRI](https://www.ruby-lang.org/) 2.7.2
