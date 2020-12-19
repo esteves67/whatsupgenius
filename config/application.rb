@@ -9,10 +9,10 @@ module Whatsupgenius
   class Application < Rails::Application
     config.load_defaults 6.0
 
-    # config.middleware.use(
-    #   Rack::TwilioWebhookAuthentication,
-    #   Rails.application.credentials.twilio[:auth_token], %r{/twilio/messages}
-    # )
+    config.middleware.use(
+      Rack::TwilioWebhookAuthentication,
+      Rails.application.credentials.twilio[:auth_token], %r{/twilio/messages}
+    )
 
     config.sass.preferred_syntax = :sass
   end

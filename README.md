@@ -8,11 +8,15 @@ Feel free to install it, try it and even modify it to learn new things to the bo
 ![What's up Genius? demo 1](https://media.giphy.com/media/GeTuWzucRMZp27d2U0/giphy.gif)
 ![What's up Genius? demo 1](https://media.giphy.com/media/Nq6T8LX3CEpegoA1BO/giphy.gif)
 
+---
+
 ##### Requirements
 - [Ruby MRI](https://www.ruby-lang.org/) 2.7.2
 - [Rails](http://rubyonrails.org/) 6.0.x
 - [PostgreSQL](https://www.postgresql.org/)
 - [Ngrok](https://ngrok.com/)
+
+---
 
 ## Setup
 
@@ -36,7 +40,7 @@ CREATE ROLE whatsupgenius WITH ENCRYPTED PASSWORD 'choose_a_password' NOSUPERUSE
 ```
 
 You can now add the postgres user password to the credentials:
-```ruby
+```bash
 # In your terminal
 EDITOR=nano bin/rails credentials:edit
 
@@ -50,10 +54,7 @@ Then set up the database:
 bin/rails db:setup
 ```
 
-Start the app with:
-```bash
-foreman s
-```
+---
 
 ## Accounts
 
@@ -67,65 +68,80 @@ Create a new application, then fill the form.
 You are now asked if this a commercial integration, choose "*No*".
 Now, copy the *Client ID* and *Client Secret*, then add them to your credentials:
 
-```
-EDITOR=nano rails credentials:edit --environment development
-
+```bash
 spotify:
-    client_id: your_client_id_key
-    client_secret: your_client_secret_key
+    client_id: 'your_client_id_key'
+    client_secret: 'your_client_secret_key'
 ```
 
 **Last thing:** Click on "*Edit settings*", enter the redirect URL `http://localhost:3000/auth/spotify/callback` and click *Add*.
 
+---
+
 ### Genius
-The bot is able to send the song lyrics thanks to Genius's API. To do that, we have to create a client and grab an access token.
+The bot is able to send the music lyrics thanks to Genius's API. To do that, we have to create a client and grab an access token.
 Go to [Genius API clients](https://genius.com/api-clients). You can write anything, we'll only use the access token to get the lyrics.
 Now, add the `access_token` to your credentials as seen previously:
 
-```
+```bash
 genius:
-    access_token: your_genius_token
+    access_token: 'your_genius_access_token'
 ```
 
 That's all!
 
+---
+
 ### Twilio
 Twilio allows us to send a message to a Whatsapp number that we control. Then, Twilio will send an HTTP request, or webhook, to our application. 
-We will use this to respond to incoming messages and add songs to the playlist.
+We will use this to respond to incoming messages and add songs to the playlist or get lyrics.
 
 Create a [Twilio account](https://www.twilio.com/try-twilio) and copy your authentification token.
 Now, go to [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox) and copy the phone number.
 Also copy the code that looks like `join xxx-list`.
 
 Edit the credentials with these informations:
-```
+```bash
 twilio:
-    auth_token: twilio_auth_token
-    phone_number: twilio_phone_number
+    auth_token: 'twilio_auth_token'
+    phone_number: 'twilio_phone_number'
     list_code: 'join xxx-list'
 ```
 
+---
+
 ### Just a last thing to do
 
-Start Ngrok in a terminal tab like this:
+If you never used ngrok, go to the [ngrock website](https://ngrok.com), create an account and follow the instructions to install and configure it.
+
+Start ngrok in your terminal tab:
 ```bash
 ./ngrok http 3000
 ```
-Now that Ngrok is started, copy the forwarding link (*looks like http://xxxxx.ngrok.io*).
+Now that ngrok is started, copy the forwarding link (looks like http://xxxxx.ngrok.io).
 Add the `/twilio/messages` path to it like `http://xxxxx.ngrock.io/twilio/messages`.
 
-Go back to the [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox) and enter this URL to `WHEN A MESSAGE COMES IN`.
-Now, we'll allow our phone number to send messages to the Sandbox. Follow this link: [Twilio Whatsapp Learn](https://www.twilio.com/console/sms/whatsapp/learn). 
-Create a contact on your phone with the number given on the page and send to it the code (*something like `join xxx-list`*).
+Go back to the [Twilio Whatsapp sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox), enter this URL to `WHEN A MESSAGE COMES IN` and save.
 
-### That's all, let's go!
+Now, we'll allow our phone number to send messages to the Sandbox. Follow this link: [Twilio Whatsapp Learn](https://www.twilio.com/console/sms/whatsapp/learn). 
+Create a contact on your phone with the number given on the page and send to it the code (something like `join xxx-list`) in Whatsapp.
+
+---
+
+### If the sandbox reponds, well done, you're all set!
+
+Please uncomment the code in `config/application.rb` and `config/initializers/rspotify.rb`. You would have had errors if this code was not commented out before adding the credentials of Twilio and Spotify.
+
+You can now start the app with `foreman s` in another terminal tab and go to [http://localhost:3000](http://localhost:3000). Enjoy!
+
+---
 
 ## How to add a music to the playlist or get the lyrics?
 
 On the homepage, click the '*I am ready*' button. Enter a playlist name and your phone number, then login with your Spotify account.
-Psst, open your Spotify application: a new playlist has been created!
+Open your Spotify application: a new playlist has been created!
 
-Now, you are able to manage this one with Whatsapp. Send to the Twilio contact your query preceded by 'wug' (What's up genius acronym).
+Now, you are able to manage this one with Whatsapp. Send to the Twilio contact your query preceded by 'wug' (*What's up Genius?* acronym).
 If the first word of the query is 'wug', it's sent to Spotify and, if there's a result, Twilio returns it in the conversation.
 This is the song that you wanted? Ok, so you just have to respond to the bot with something like `'yes', 'oui', 'yeah', 'ouais', 'yep', 'yup' or '👍'`.
 If it's not what you wanted, type `'no', 'non', 'nah', 'nan', 'nope', 'nop' or '👎'`.

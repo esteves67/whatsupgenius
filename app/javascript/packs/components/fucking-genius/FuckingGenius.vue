@@ -41,7 +41,7 @@
                   @update="onPhoneUpdate"
                 />
                 <small class="text-muted">
-                  Le numéro de téléphone est nécessaire pour vous associer la playlist au numéro WhatsApp
+                  Le numéro de téléphone est nécessaire pour associer la playlist au numéro WhatsApp
                 </small>
               </div>
 
