@@ -40,6 +40,19 @@ Config files:
 
 You have to fill in `database.yml` _(in order to start the app)_ with the previously created role and password.
 
+> :warning: **An error will be raised when you try to edit the credentials if you don't comment the code below in the `config/application.rb`**
+
+Comment this code:
+```ruby
+# config/application.rb
+
+config.middleware.use(
+  Rack::TwilioWebhookAuthentication,
+  Rails.application.credentials.twilio[:auth_token], %r{/twilio/messages}
+)
+```
+
+
 Then set up the database:
 ```bash
 rails db:setup
