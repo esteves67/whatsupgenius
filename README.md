@@ -32,30 +32,22 @@ yarn install
 
 Create a PostgreSQL role:
 ```sql
-CREATE ROLE whatsupgenius WITH PASSWORD 'choose_a_password';
+CREATE ROLE whatsupgenius WITH ENCRYPTED PASSWORD 'choose_a_password' NOSUPERUSER CREATEDB LOGIN;
 ```
 
-Config files:
-* `config/database.yml`
-
-You have to fill in `database.yml` _(in order to start the app)_ with the previously created role and password.
-
-> :warning: **An error will be raised when you try to edit the credentials if you don't comment the code below in the `config/application.rb`**
-
-Comment this code:
+You can now add the postgres user password to the credentials:
 ```ruby
-# config/application.rb
+# In your terminal
+EDITOR=nano bin/rails credentials:edit
 
-config.middleware.use(
-  Rack::TwilioWebhookAuthentication,
-  Rails.application.credentials.twilio[:auth_token], %r{/twilio/messages}
-)
+# Edit with this:
+database:
+  password: 'REPLACE THIS WITH THE PASSWORD'
 ```
-
 
 Then set up the database:
 ```bash
-rails db:setup
+bin/rails db:setup
 ```
 
 Start the app with:

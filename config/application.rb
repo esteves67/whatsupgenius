@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require_relative 'boot'
-require 'rails/all'
+# require_relative 'boot'
+# require 'rails/all'
 
-Bundler.require(*Rails.groups)
+# Bundler.require(*Rails.groups)
 
-module Whatsupgenius
-  class Application < Rails::Application
-    config.load_defaults 6.0
+# module Whatsupgenius
+#   class Application < Rails::Application
+#     config.load_defaults 6.0
 
-    config.middleware.use(
-      Rack::TwilioWebhookAuthentication,
-      Rails.application.credentials.twilio[:auth_token], %r{/twilio/messages}
-    )
+#     config.middleware.use(
+#       Rack::TwilioWebhookAuthentication,
+#       Rails.application.credentials.twilio[:auth_token], %r{/twilio/messages}
+#     )
 
-    config.sass.preferred_syntax = :sass
-  end
-end
+#     config.sass.preferred_syntax = :sass
+#   end
+# end
