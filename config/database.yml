@@ -13,7 +13,3 @@ development:
 test:
   <<: *default
   database: whatsupgenius_test
-
-production:
-  <<: *default
-  database: whatsupgenius_production
