@@ -1,38 +1,64 @@
-require: rubocop-performance
+require:
+  - rubocop-performance
+  - rubocop-rails
 
 AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.0
+
+  NewCops: enable
+
   Exclude:
     - 'db/schema.rb'
-    - 'node_modules/**/*'
     - 'public/**/*'
     - 'tmp/**/*'
-    - 'vendor/**/*'
-
-  TargetRubyVersion: 2.5
-  TargetRailsVersion: 5.2
+    - 'bin/bundle'
+    - 'bin/rails'
+    - 'bin/rake'
+    - 'config/initializers/cors.rb'
 
 Rails:
   Enabled: true
 
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
 
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
   IndentationWidth: 2
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
-Layout/IndentFirstArrayElement:
+Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 
-Layout/IndentFirstHashElement:
+Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'db/migrate/*'
+
+Lint/RaiseException:
+  Enabled: false
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
 
 Metrics/AbcSize:
   Max: 65
@@ -51,11 +77,6 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 10
 
-Metrics/LineLength:
-  Max: 200
-  Exclude:
-    - 'db/migrate/*'
-
 Metrics/MethodLength:
   Max: 60
   Exclude:
@@ -63,17 +84,6 @@ Metrics/MethodLength:
 
 Metrics/PerceivedComplexity:
   Max: 10
-
-Rails/CreateTableWithTimestamps:
-  Exclude:
-    - 'db/migrate/{2014,2015,2016,2017,2018}*.rb'
-
-Rails/BulkChangeTable:
-  Enabled: false
-
-Rails/ReversibleMigration:
-  Exclude:
-    - 'db/migrate/{2014,2015,2016,2017,2018}*.rb'
 
 Rails/SkipsModelValidations:
   Exclude:
@@ -88,10 +98,8 @@ Rails/UnknownEnv:
     - production
 
 Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
   AutoCorrect: true
-
-Style/ConditionalAssignment:
-  Enabled: false
 
 Style/Documentation:
   Enabled: false
@@ -99,8 +107,20 @@ Style/Documentation:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
-Style/IfUnlessModifier:
-  Enabled: false
+Style/ExponentialNotation:
+  Enabled: true
 
-Style/SymbolArray:
-  MinSize: 7
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
+
+Bundler/OrderedGems:
+  Enabled: true

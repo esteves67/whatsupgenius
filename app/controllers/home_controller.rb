@@ -32,8 +32,9 @@ class HomeController < ApplicationController
     spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     user_token = params[:state]
     phone_number = cookies[:phoneNumber]
+    language = request.env['HTTP_ACCEPT_LANGUAGE'].split('-').first
 
-    @user = User.perform(spotify_user, user_token, phone_number)
+    @user = User.perform(spotify_user, user_token, phone_number, language)
 
     if @user.valid?
       playlist_name = cookies[:playlistName]
