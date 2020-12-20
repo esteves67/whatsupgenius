@@ -5,8 +5,7 @@ class HomeController < ApplicationController
   end
 
   def check_user
-    token = params[:user_token]
-    user  = User.find_by(user_token: token)
+    user = User.find_by(user_token: params[:user_token])
 
     if user
       render json: { status: 'matched' }

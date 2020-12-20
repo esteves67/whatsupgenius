@@ -40,19 +40,18 @@ private
   end
 
   def request_management(query, user)
-    if query.split.first.casecmp('wug').zero?
+    if query.split.first.casecmp?('wug')
       query = query.remove('wug ')
       user.update(last_request: query)
       service_responses = MessageManager.message(session[:track], query, user.language)
-
       session[:track] = service_responses[0]
-      service_responses[1]
-    elsif query.split.first.casecmp('lyrics').zero?
-      query = query.remove('lyrics ')
-      # If a user sends only "lyrics", the bot returns the lyrics of the last searched song with the 'wug' keyword
-      query = user.last_request if query == 'lyrics'
 
+      service_responses[1]
+    elsif query.split.first.casecmp?('lyrics')
+      query = query.remove('lyrics ')
+      query = user.last_request if query == 'lyrics'
       session[:track] = nil
+
       GeniusLyrics.get_lyrics(query, user.language)
     end
   end

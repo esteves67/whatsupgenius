@@ -5,10 +5,8 @@ class GeniusLyrics
 
   def self.get_lyrics(query, user_language)
     song = Genius::Song.search(query).first
-    if song
-      song.url
-    else
-      I18n.t('.messages.no_lyrics_sentences', locale: user_language).sample
-    end
+    return song.url if song
+
+    I18n.t('.messages.no_lyrics_sentences', locale: user_language).sample
   end
 end
