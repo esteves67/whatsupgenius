@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Twilio::MessagesController < ApplicationController
+class Api::TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
@@ -24,6 +24,13 @@ class Twilio::MessagesController < ApplicationController
     else
       head 200, content_type: 'text/xml'
     end
+  end
+
+  def data
+    render json: {
+      twilioNumber:   Rails.application.credentials.twilio[:phone_number],
+      twilioListCode: Rails.application.credentials.twilio[:list_code]
+    }
   end
 
 private

@@ -141,7 +141,7 @@ export default {
 
   methods: {
     fillTwilioData: function() {
-      this.$http.get('/twilio-data').then(response => {
+      this.$http.get('/api/twilio/data').then(response => {
         this.twilioNumber = response.data.twilioNumber
         this.twilioListCode = response.data.twilioListCode
       }, error => {
@@ -156,7 +156,7 @@ export default {
       const userToken = this.generateToken()
       const self = this
 
-      this.$http.get('/spotify-login', { params: { user_token: userToken } }).then(response => {
+      this.$http.get('/api/spotify/login', { params: { user_token: userToken } }).then(response => {
         window.open(response.data.uri)
       }, error => {
         console.log(error.data)
