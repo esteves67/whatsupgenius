@@ -173,7 +173,6 @@ export default {
 
     checkUserRequest: function(userToken) {
       this.$http.get('/check-user', { params: { user_token: userToken } }).then(response => {
-        console.log(response)
         if(response.data.status === 'matched') {
           this.userCreated = true
         }
