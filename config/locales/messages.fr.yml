@@ -3,7 +3,7 @@ fr:
     positive_responses:
       - "Ok, je l'ajoute à la playlist ! 🔥"
       - "C'est ajouté 😎"
-      - "Et voilà, c'est beau non ? 😎"
+      - "Et voilà ! 😎"
       - "Musiquée ajoutée, dab ! 🙋‍♂️"
     negative_responses:
       - "Hmm ok, autre chose ? 👀"
@@ -32,4 +32,7 @@ fr:
     negative_keywords:
       ["no", "non", "nah", "nan", "nope", "nop", "👎"]
 
-    no_last_request: Effectuez d'abord une recherche avec "wug _votre\_recherche_" ou précisez votre recherche après le mot-clé "lyrics"
+  support:
+    array:
+      two_words_connector: " et "
+      last_word_connector: " et "

@@ -120,7 +120,7 @@ export default {
       });
     }
 
-    this.fillTwilioData();
+    this.fillTwilioData()
   },
 
   computed: {

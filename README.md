@@ -149,4 +149,4 @@ If it's not what you wanted, type `'no', 'non', 'nah', 'nan', 'nope', 'nop' or '
 You can also reply to the bot by "lyrics" to get the lyrics without adding the sound to the playlist.
 If you want to directly search the lyrics on Genius, just type "lyrics _your\_query_"!
 
-You can easily add some available responses within `message_manager` locale.
+You can easily add some available responses within `messages` locale.

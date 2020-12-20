@@ -1,0 +1,38 @@
+en:
+  messages:
+    positive_responses:
+      - "Ok, I'm adding it to the playlist! 🔥"
+      - "It's added 😎"
+      - "Here we go! 😎"
+      - "Music added, dab! 🙋‍♂️"
+    negative_responses:
+      - "Hmm ok, something else? 👀"
+      - "Ouch, failed. Are you looking for something else? 🧐"
+      - "At least I tried 🧞‍♂️"
+      - "Yet this music is cool 👻"
+
+    result_sentences:
+      - "I found _%{track_name}_ of *%{track_artist}*! I add it to your playlist? 🧐 For the lyrics, send *lyrics* !"
+      - "_%{track_name}_ of *%{track_artist}*, that's it? 😁"
+      - "There's a song of *%{track_artist}*, called _%{track_name}_. Is that what you're looking for? ✌️"
+      - "Yeaaah I found _%{track_name}_ of *%{track_artist}*. If you want to add it or not, answer me! For the lyrics, you can send *lyrics* 🎤"
+    no_result_sentences:
+      - "I didn't find anything with _%{query}_, either the song doesn't exist on Spotify, or you have failed hehe"
+      - "Hmm, no results for _%{query}_ sorry 🤷‍♂️"
+      - "There's no music called _%{query}_ on Spotify 😣"
+      - "Okay, stay calm, but I couldn't find anything for _%{query}_..."
+
+    no_lyrics_sentences:
+      - "Oops, I couldn't find the lyrics on Genius.com 🧐"
+      - "Shit, the lyrics aren't on Genius.com ☠️"
+      - "Captain, we have a problem: I couldn't find anything on Genius.com"
+
+    positive_keywords:
+      ["yes", "add", "oui", "yeah", "ouais", "yep", "yup", "👍"]
+    negative_keywords:
+      ["no", "non", "nah", "nan", "nope", "nop", "👎"]
+
+  support:
+    array:
+      two_words_connector: " and "
+      last_word_connector: " and "
