@@ -142,10 +142,10 @@ export default {
   methods: {
     fillTwilioData: function() {
       this.$http.get('/twilio-data').then(response => {
-        this.twilioNumber = response.body.twilioNumber
-        this.twilioListCode = response.body.twilioListCode
+        this.twilioNumber = response.data.twilioNumber
+        this.twilioListCode = response.data.twilioListCode
       }, error => {
-        console.log(error.body)
+        console.log(error.data)
       })
     },
 
@@ -157,9 +157,9 @@ export default {
       const self = this
 
       this.$http.get('/spotify-login', { params: { user_token: userToken } }).then(response => {
-        window.open(response.body.uri)
+        window.open(response.data.uri)
       }, error => {
-        console.log(error.body)
+        console.log(error.data)
       });
 
       window.interval = setInterval(function() {
@@ -173,7 +173,8 @@ export default {
 
     checkUserRequest: function(userToken) {
       this.$http.get('/check-user', { params: { user_token: userToken } }).then(response => {
-        if(response.body.status === 'matched') {
+        console.log(response)
+        if(response.data.status === 'matched') {
           this.userCreated = true
         }
       });
