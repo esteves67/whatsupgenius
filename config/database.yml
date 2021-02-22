@@ -15,4 +15,5 @@ test:
   database: whatsupgenius_test
 
 production:
+  <<: *default
   databse: whatsaupgenius
