@@ -19,7 +19,6 @@ yarn-debug.log*
 .yarn-integrity
 .rspec
 
-/public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
