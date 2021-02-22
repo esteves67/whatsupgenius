@@ -13,7 +13,6 @@ gem 'sassc-rails', '~> 2.1'
 gem 'slim-rails', '~> 3.2'
 
 # Helpers
-gem 'bootsnap', '~> 1.4', '>= 1.4.5', require: false
 gem 'jbuilder', '~> 2.9', '>= 2.9.1'
 
 # Assets
