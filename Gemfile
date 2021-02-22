@@ -7,6 +7,7 @@ ruby '3.0.0'
 
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails', '6.1.3'
+gem 'rake', '~> 13.0', '>= 13.0.3'
 
 # DSLs
 gem 'sassc-rails', '~> 2.1'
