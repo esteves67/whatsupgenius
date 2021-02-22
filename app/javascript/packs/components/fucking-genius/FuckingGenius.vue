@@ -72,7 +72,7 @@
                   <h5>Comment ça marche ?</h5>
                   <p>
                     Pour rechercher une musique sur Spotify ou les lyrics sur Genius, envoie "WUG" suivi de ta recherche.
-                    Par exemple, envoie "<span class="font-italic">WUG snow moha la squale</span>"
+                    Par exemple, envoie "<span class="font-italic">WUG rocket man</span>"
                     et laisse-toi guider !
                   </p>
                 </div>
@@ -216,7 +216,7 @@ $whatsupgenius: #f76d23;
   will-change: transform;
   overflow: auto;
   .fg-container {
-    min-width: 600px;
+    width: auto;
     min-height: 300px;
     margin: 0 auto;
     padding: 20px;
@@ -278,6 +278,19 @@ $whatsupgenius: #f76d23;
           font-size: .9rem;
           color: #eaeaea;
         }
+      }
+    }
+    @media screen and (max-width: 576px) {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) !important;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+
+      & > .card {
+        max-width: 100%;
       }
     }
   }

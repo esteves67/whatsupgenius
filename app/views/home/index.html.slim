@@ -1,5 +1,5 @@
 .row.align-items-center.justify-content-around.home-content
-  .col-xs-12.col-md-6.col-lg-4
+  .col-xs-12.col-md-6.col-lg-4.align-self-center
     .card.bg-dark.shadow-lg.text-center
       .card-header
         = t('.get_genius_title')
@@ -9,5 +9,5 @@
       .card-footer
         = button_tag t('.ready'), class: 'btn btn-primary fucking-genius pulse'
 
-  .col-xs-12.col-md-6.col-lg-6.offset-lg-1
+  .col-xs-12.col-md-6.col-lg-6.offset-lg-1.align-self-center
     = render 'carousel'

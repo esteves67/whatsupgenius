@@ -1,10 +1,9 @@
 .brand {
-	position: absolute;
-  top: 50px;
-  left: -50px;
   width: 100% !important;
   text-transform: uppercase;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.175);
+  margin: 4rem 0;
+  margin-left: -150px;
 
   .iamCol {
     text-align: right;
@@ -45,14 +44,14 @@
     }
   }
 
+  @include media-breakpoint-down(lg) {
+    & { margin-left: 0 }
+  }
+
   @include media-breakpoint-down(md) {
-    & {
-      position: initial;
-      margin: 50px auto;
-    }
-    & .iamCol {
-      text-align: center;
-    }
+    & { margin: 50px auto }
+    & .iamCol { text-align: center }
+
     & .slideCol {
       top: -20px;
       font-size: 3rem;

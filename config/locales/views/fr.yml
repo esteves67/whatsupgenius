@@ -19,25 +19,28 @@ fr:
         title: Première étape ☝️
         description: |
           Entre le nom de la playlist que tu souhaites créer et associer à 
-          <span class="font-weight-bold">What's up Genius?</span>
+          <span class="font-weight-bold">What's up Genius?</span>, ainsi que ton numéro de téléphone,
           puis connecte-toi avec ton compte Spotify.
       second_step:
         title: Deuxième étape ✌️
         description: |
           OK, playlist créée ! Maintenant, rends-toi sur
-          WhatsApp et ajoute à la conversation le numéro de 
-          téléphone qui vient de t'être attribué.
+          WhatsApp et ajoute le numéro de téléphone affiché, puis envoie-lui le code.
       third_step:
         title: Troisième étape 🤟
         description: |
           Abracadabra ! Recherche un morceau sur Spotify en 
           tapant simplement "WUG" suivi de la musique que tu souhaites.
-          Par exemple, "<span class="font-italic">WUG Booba PGP</span>".
+          Par exemple, "<span class="font-italic">WUG hot girl bummer</span>".
       fourth_step:
         title: Dernière étape 🔥
         description: |
-          <span class="font-weight-bold">What's up genius?</span> t'envoie le résultat. 
-          Si c'est la musique que tu recherchais, confirme-lui l'ajout à la playlist. 🎤
+          <span class="font-weight-bold">What's up genius?</span> t'envoie le premier résultat Spotify. 
+          Pour ajouter ou non la musique à ta playlist, réponds simplement au bot.
+          <p class="mt-2 text-justify">
+          Les réponses positives doivent contenir
+          "yes", "oui", "yeah", "ouais", "yep", "yup" ou "👍".<br>
+          Pour les négatives : "no", "non", "nah", "nan", "nope", "nop" ou "👎".</p>
       last_thing:
         title: Psst 👂
         description: |

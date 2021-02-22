@@ -5,6 +5,7 @@
   }
 
   .card-body {
+
     .card-title {
       font-size: $h6-font-size;
     }
@@ -12,11 +13,10 @@
 }
 
 .how-it-works--card {
-  height: 240px;
+  height: auto;
 
   @include media-breakpoint-down(md) {
     & {
-      height: 300px;
       margin-top: 50px;
     }
   }

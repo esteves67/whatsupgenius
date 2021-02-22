@@ -1,9 +1,6 @@
 .home-content {
-  height: 100%;
-
-  @include media-breakpoint-down(md) {
-    height: initial;
-  }
+  min-height: 100%;
+  padding-bottom: 2rem;
 
   .fucking-genius {
     animation: pulsing 1.5s infinite;

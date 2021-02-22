@@ -4,7 +4,9 @@ import FuckingGenius from './components/fucking-genius/FuckingGenius.vue'
 import VuePhoneNumberInput from 'vue-phone-number-input'
 import 'vue-phone-number-input/dist/vue-phone-number-input.css'
 
-Vue.prototype.$http = Axios.create({ baseURL: 'http://localhost:3000' })
+let baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://wug.robinhernie.dev'
+
+Vue.prototype.$http = Axios.create({ baseURL: baseUrl })
 Vue.component('vue-phone-number-input', VuePhoneNumberInput)
 
 document.addEventListener('DOMContentLoaded', () => {
