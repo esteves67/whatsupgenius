@@ -1,6 +1,9 @@
 {
   "name": "whatsupgenius",
   "private": true,
+  "engines": {
+    "node": "15.x"
+  },
   "dependencies": {
     "@rails/webpacker": "3.5",
     "axios": "^0.21.0",
