@@ -1,2 +1,2 @@
-web: bin/rails s
-webpack: bin/webpack-dev-server
+web: bundle exec rails server -p $PORT
+webpack: NODE_ENV=production ./bin/webpack --watch --colors --progress
